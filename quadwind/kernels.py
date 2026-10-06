@@ -178,11 +178,13 @@ def inner_loop(n_sub, dt, mode, thrust_cmd, setpoint, wind,
                pos, vel, quat, omega, rotor, R, thrusts, acc, aero,
                mass, eff, alpha, com, ext,
                kf, torque_map, a_inv, f_max, max_rotor, inertia, rate_gains, att_gains,
-               rotor_drag, body_drag, g):
+               rotor_drag, body_drag, g, rate_ki, rate_int, rate_int_max):
     """n_sub шагов физики с нижними контурами на каждом шаге.
 
     mode = MODE_CTBR:     setpoint = желаемые угловые скорости (рад/с)
     mode = MODE_ATTITUDE: setpoint = (крен, тангаж, скорость рыскания)
+    rate_ki > 0 включает интегратор в контуре угловых скоростей (как I-член реального полётного
+    контроллера): он компенсирует постоянные моменты — ослабленный мотор, смещение центра масс.
     """
     n = pos.shape[0]
     wd = np.empty(3)
@@ -197,9 +199,13 @@ def inner_loop(n_sub, dt, mode, thrust_cmd, setpoint, wind,
                 wd[0], wd[1], wd[2] = setpoint[i, 0], setpoint[i, 1], setpoint[i, 2]
             wx, wy, wz = omega[i, 0], omega[i, 1], omega[i, 2]
             jx, jy, jz = inertia[0], inertia[1], inertia[2]
-            tx = jx * rate_gains[0] * (wd[0] - wx) + (wy * jz * wz - wz * jy * wy)
-            ty = jy * rate_gains[1] * (wd[1] - wy) + (wz * jx * wx - wx * jz * wz)
-            tz = jz * rate_gains[2] * (wd[2] - wz) + (wx * jy * wy - wy * jx * wx)
+            for k in range(3):
+                if rate_ki[k] > 0.0:
+                    v = rate_int[i, k] + (wd[k] - omega[i, k]) * dt
+                    rate_int[i, k] = min(max(v, -rate_int_max), rate_int_max)
+            tx = jx * (rate_gains[0] * (wd[0] - wx) + rate_ki[0] * rate_int[i, 0]) + (wy * jz * wz - wz * jy * wy)
+            ty = jy * (rate_gains[1] * (wd[1] - wy) + rate_ki[1] * rate_int[i, 1]) + (wz * jx * wx - wx * jz * wz)
+            tz = jz * (rate_gains[2] * (wd[2] - wz) + rate_ki[2] * rate_int[i, 2]) + (wx * jy * wy - wy * jx * wx)
             mix_one(thrust_cmd[i], tx, ty, tz, a_inv, f_max, f_cmd)
             for m in range(4):
                 cmd[m] = sqrt(f_cmd[m] / kf)

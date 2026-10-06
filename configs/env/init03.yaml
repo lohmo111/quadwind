@@ -1,0 +1,4 @@
+# Начальное смещение до 0,3 м вместо 0,5
+variant: init03
+space_overrides:
+  init_radius: {lo: 0.0, hi: 0.3, easy: [0.0, 0.2]}

@@ -41,6 +41,8 @@ class EnvConfig:
     tilt_max: float = 0.6                     # рад, режим attitude
     yaw_rate_max: float = 2.5                 # рад/с, режим attitude
     rate_gains: tuple = (25.0, 25.0, 20.0)      # ζ ≥ 0.4 при τ_мотора до 0.07 с
+    rate_ki: tuple = (0.0, 0.0, 0.0)            # I-член контура угловых скоростей (0 — только P)
+    rate_int_max: float = 1.5                   # ограничение интеграла, рад
     att_gains: tuple = (8.0, 8.0, 3.0)        # внутренний P по ориентации (режим attitude)
     target: tuple = (0.0, 0.0, 1.5)
     history: int = 1
@@ -65,6 +67,9 @@ class EnvConfig:
     w_yaw: float = 0.1
     w_tilt: float = 0.3                       # штраф за наклон tilt² (рад²)
     cost_saturation: str = "tanh"             # "tanh": tanh(c) — градиент есть и при больших c; "clip": min(c, 1)
+    w_pos_cost: float = 0.0                   # квадратичная стоимость ‖e‖² внутри tanh (альтернативная цель)
+    w_ss: float = 0.0                         # штраф за сглаженную ошибку ‖EMA(e)‖² — бьёт по статической ошибке
+    ss_tau: float = 1.0                       # с, постоянная сглаживания для w_ss
     crash_penalty: float = 50.0
     # прерывание эпизода
     max_dist: float = 2.0
@@ -79,7 +84,7 @@ class EnvConfig:
         unknown = set(d) - names
         if unknown:
             raise KeyError(f"unknown EnvConfig keys: {sorted(unknown)}")
-        for k in ("rate_max", "rate_gains", "att_gains", "target"):
+        for k in ("rate_max", "rate_gains", "rate_ki", "att_gains", "target"):
             if k in d:
                 d[k] = tuple(d[k])
         return cls(**d)
@@ -105,6 +110,9 @@ class HoverCore:
         self.max_steps = int(round(cfg.episode_seconds * cfg.ctrl_freq))
         self.dyn = QuadDynamics(params, n, 1.0 / cfg.sim_freq)
         self.rate_gains = np.asarray(cfg.rate_gains, dtype=float)
+        self.rate_ki = np.asarray(cfg.rate_ki, dtype=float)
+        self.err_ema = np.zeros((n, 3))
+        self._ema_alpha = 1.0 - np.exp(-self.dt / max(cfg.ss_tau, 1e-6))
         self.mode = {"ctbr": kernels.MODE_CTBR, "attitude": kernels.MODE_ATTITUDE}[cfg.action_mode]
         self.target = np.asarray(cfg.target, dtype=float)
         self.rate_max = np.asarray(cfg.rate_max, dtype=float)
@@ -186,6 +194,7 @@ class HoverCore:
         self.act_buf[i] = 0.0
         self.prev_action[i] = 0.0
         self.err_integral[i] = 0.0
+        self.err_ema[i] = 0.0
         self.applied_action[i] = 0.0
         self.step_count[i] = 0
 
@@ -277,7 +286,8 @@ class HoverCore:
             setpoint = applied[:, 1:] * self.rate_max
         else:
             setpoint = applied[:, 1:] * np.array([cfg.tilt_max, cfg.tilt_max, cfg.yaw_rate_max])
-        d.run(self.substeps, self.mode, thrust, setpoint, wind_now, self.rate_gains, self.att_gains)
+        d.run(self.substeps, self.mode, thrust, setpoint, wind_now, self.rate_gains, self.att_gains,
+              self.rate_ki, cfg.rate_int_max)
 
         self.step_count += 1
         e = d.pos - self.target
@@ -298,6 +308,9 @@ class HoverCore:
         cost = cfg.w_vel * np.sum(d.vel**2, axis=1) + cfg.w_rate * rate**2 \
             + cfg.w_dact * np.sum((a - self.prev_action) ** 2, axis=1) + cfg.w_act * np.sum(a**2, axis=1) \
             + cfg.w_yaw * (1.0 - np.cos(yaw)) + cfg.w_tilt * tilt**2
+        if cfg.w_pos_cost or cfg.w_ss:
+            self.err_ema += self._ema_alpha * (e - self.err_ema)
+            cost = cost + cfg.w_pos_cost * dist**2 + cfg.w_ss * np.sum(self.err_ema**2, axis=1)
         cost = np.tanh(cost) if cfg.cost_saturation == "tanh" else np.minimum(cost, 1.0)
         reward = r_pos + 1.0 - cost
         reward = np.where(terminated, -cfg.crash_penalty, reward)

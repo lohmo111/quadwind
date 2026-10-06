@@ -22,7 +22,8 @@ from quadwind.training import load_config  # noqa: E402
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--exp", default="main")
-    ap.add_argument("--configs", nargs="+", required=True)
+    ap.add_argument("--configs", nargs="+", default=[])
+    ap.add_argument("--plan", default=None, help="файл очереди: «конфиг | оверлеи | сид» на строку")
     ap.add_argument("--overlays", nargs="*", default=["-"],
                     help="варианты среды; '-' — без оверлея; 'a.yaml+b.yaml' — два оверлея в одном запуске")
     ap.add_argument("--seeds", nargs="+", type=int, default=[0, 1, 2, 3, 4])
@@ -32,6 +33,19 @@ def main() -> None:
     args = ap.parse_args()
 
     queue = []
+    if args.plan:                                # строки «конфиг | оверлеи через + или - | сид»
+        for line in Path(args.plan).read_text(encoding="utf-8").splitlines():
+            line = line.split("#")[0].strip()
+            if not line:
+                continue
+            config, overlay, seed = (x.strip() for x in line.split("|"))
+            overlays = [] if overlay == "-" else overlay.split("+")
+            name = load_config(config, overlays)["name"]
+            if (ROOT / "runs" / args.exp / name / f"seed_{seed}" / "final_model.zip").exists():
+                print(f"skip {name} seed {seed}: done")
+                continue
+            queue.append((config, overlays, name, int(seed)))
+        args.seeds = []
     for seed in args.seeds:                      # сначала все методы с сидом 0, потом с сидом 1, …
         for overlay in args.overlays:
             for config in args.configs:

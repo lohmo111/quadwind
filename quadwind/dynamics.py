@@ -53,6 +53,7 @@ class QuadDynamics:
         self.ext_force = np.zeros((n, 3))
         self.motor_alpha = np.empty(n)
         self.set_motor_tau(np.full(n, params.motor_tau))
+        self.rate_int = np.zeros((n, 3))             # состояние интегратора контура угловых скоростей
 
         # последние вычисленные величины (для логов и тестов)
         self.thrusts = np.zeros((n, 4))
@@ -68,6 +69,7 @@ class QuadDynamics:
         self.quat[idx] = quat
         self.omega[idx] = omega
         self.rotor[idx] = rotor
+        self.rate_int[idx] = 0.0
         self.R[idx] = quat_to_rotmat(self.quat[idx])
 
     def _common(self):
@@ -81,9 +83,12 @@ class QuadDynamics:
                               self.max_rotor, self.inertia, self.rotor_drag, self.body_drag, GRAVITY)
 
     def run(self, n_sub: int, mode: int, thrust_cmd: np.ndarray, setpoint: np.ndarray, wind: np.ndarray,
-            rate_gains: np.ndarray, att_gains: np.ndarray) -> None:
-        """n_sub шагов физики с регулятором угловых скоростей и миксером на каждом шаге."""
+            rate_gains: np.ndarray, att_gains: np.ndarray, rate_ki: np.ndarray | None = None,
+            rate_int_max: float = 1.5) -> None:
+        """n_sub шагов физики с регулятором угловых скоростей (P или PI) и миксером на каждом шаге."""
+        rate_ki = np.zeros(3) if rate_ki is None else np.asarray(rate_ki, dtype=float)
         kernels.inner_loop(n_sub, self.dt, mode, np.ascontiguousarray(thrust_cmd, dtype=float),
                            np.ascontiguousarray(setpoint, dtype=float), np.ascontiguousarray(wind, dtype=float),
                            *self._common(), self.kf, self.torque_map, self.a_inv, self.f_max, self.max_rotor,
-                           self.inertia, rate_gains, att_gains, self.rotor_drag, self.body_drag, GRAVITY)
+                           self.inertia, rate_gains, att_gains, self.rotor_drag, self.body_drag, GRAVITY,
+                           rate_ki, self.rate_int, float(rate_int_max))

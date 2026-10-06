@@ -17,6 +17,8 @@ from sb3_contrib.common.recurrent.policies import RecurrentActorCriticPolicy
 class FastLstmPolicy(RecurrentActorCriticPolicy):
     @staticmethod
     def _process_sequence(features, lstm_states, episode_starts, lstm):
+        # асимметричный актор-критик: LSTM актора видит только первые input_size признаков
+        features = features[..., : lstm.input_size]
         n_seq = lstm_states[0].shape[1]
         seq = features.reshape((n_seq, -1, lstm.input_size)).swapaxes(0, 1)
         starts = episode_starts.reshape((n_seq, -1)).swapaxes(0, 1)

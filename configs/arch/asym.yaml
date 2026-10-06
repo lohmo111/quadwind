@@ -1,0 +1,4 @@
+# Асимметричный критик: критик видит истинные ветер/массу/моторы, актор — нет
+variant: asym
+asymmetric_critic: true
+env: {privileged: true}

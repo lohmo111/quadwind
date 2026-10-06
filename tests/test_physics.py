@@ -176,3 +176,12 @@ def test_weak_motor_is_not_compensated_by_inner_loop():
     d.motor_eff[0, 0] = 0.8
     _inner(d, 250, kernels.MODE_CTBR, CF2X.weight, [0.0, 0.0, 0.0])
     assert np.linalg.norm(d.omega[0]) > 0.1
+
+
+def test_pi_rate_loop_compensates_weak_motor():
+    """С I-членом контур угловых скоростей сам убирает постоянный момент от ослабленного мотора."""
+    d = make()
+    d.motor_eff[0, 0] = 0.8
+    d.run(1000, kernels.MODE_CTBR, np.atleast_1d(CF2X.weight), np.zeros((1, 3)), NO_WIND,
+          np.array([25.0, 25.0, 20.0]), np.array([8.0, 8.0, 3.0]), rate_ki=np.array([100.0, 100.0, 50.0]))
+    assert np.linalg.norm(d.omega[0]) < 0.02

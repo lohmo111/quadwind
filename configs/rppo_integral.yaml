@@ -1,0 +1,3 @@
+name: rppo_integral      # M5b: RPPO + интеграл наблюдаемой ошибки во входе
+algo: rppo
+env: {obs_integral: true}

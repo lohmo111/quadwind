@@ -1,10 +1,9 @@
-name: rppo__v1_precise
+name: rppo
 algo: rppo
 total_timesteps: 3000000
 n_envs: 16
 train_space: train
-env:
-  sigma_near: 0.05
+env: {}
 curriculum:
   start: 0.0
   ramp_fraction: 0.3
@@ -42,5 +41,3 @@ policy_kwargs:
   n_lstm_layers: 1
   shared_lstm: false
   enable_critic_lstm: true
-variants:
-- v1_precise

@@ -1,0 +1,18 @@
+# S0: разброс по сидам на V0
+configs/rppo.yaml | - | 1
+configs/rppo.yaml | - | 2
+configs/ppo_mlp.yaml | - | 1
+configs/ppo_mlp.yaml | - | 2
+configs/ppo_mlp_integral.yaml | - | 0
+configs/ppo_mlp_integral.yaml | - | 1
+configs/ppo_mlp_integral.yaml | - | 2
+# S1: PI-контур
+configs/rppo.yaml | configs/env/pi.yaml | 0
+configs/ppo_mlp.yaml | configs/env/pi.yaml | 0
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml | 0
+# S1: шум (V3) и перезапуск прерванных
+configs/rppo.yaml | configs/e7/v3_noisy.yaml | 0
+configs/ppo_mlp.yaml | configs/e7/v3_noisy.yaml | 0
+configs/ppo_mlp_integral.yaml | configs/e7/v3_noisy.yaml | 0
+configs/rppo.yaml | configs/e7/v1_precise.yaml | 0
+configs/rppo.yaml | configs/e7/v2_persistent.yaml | 0

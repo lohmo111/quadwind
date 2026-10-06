@@ -15,7 +15,7 @@ from stable_baselines3.common.callbacks import BaseCallback
 from stable_baselines3.common.vec_env import VecMonitor, VecNormalize
 
 from .conditions import SCENARIO_SPACES, TRAIN_SPACE, ConditionSpace, make_suite, override_space
-from .env import EnvConfig, QuadHoverVecEnv
+from .env import PRIV_DIM, EnvConfig, QuadHoverVecEnv
 from .evaluation import rollout
 from .metrics import episode_metrics
 from .policies import ObsNormalizer, SB3Policy
@@ -85,18 +85,27 @@ def make_model(cfg: dict, env, seed: int, device: str = "cpu", tensorboard_log: 
     pk = dict(cfg.get("policy_kwargs", {}))
     if "activation_fn" in pk:
         pk["activation_fn"] = {"tanh": nn.Tanh, "relu": nn.ReLU, "elu": nn.ELU}[pk["activation_fn"]]
+    asym = bool(cfg.get("asymmetric_critic", False))
+    if asym:                                            # критик видит признаки оракула, актор — нет
+        env_cfg = EnvConfig.from_dict(cfg.get("env"))
+        if not env_cfg.privileged:
+            raise ValueError("asymmetric_critic требует env.privileged: true")
+        pk["actor_dim"] = env_cfg.obs_dim - PRIV_DIM
     if cfg["algo"] == "ppo":
         pk.pop("lstm_hidden_size", None)
         pk.pop("n_lstm_layers", None)
         pk.pop("shared_lstm", None)
         pk.pop("enable_critic_lstm", None)
-        return PPO("MlpPolicy", env, policy_kwargs=pk, seed=seed, device=device, tensorboard_log=tensorboard_log,
-                   verbose=0, **kw)
+        from .asymmetric import AsymmetricMlpPolicy
+        return PPO(AsymmetricMlpPolicy if asym else "MlpPolicy", env, policy_kwargs=pk, seed=seed, device=device,
+                   tensorboard_log=tensorboard_log, verbose=0, **kw)
     if cfg["algo"] == "rppo":
         from sb3_contrib import RecurrentPPO
 
+        from .asymmetric import AsymmetricLstmPolicy
         from .fast_lstm import FastLstmPolicy
-        return RecurrentPPO(FastLstmPolicy, env, policy_kwargs=pk, seed=seed, device=device,
+        return RecurrentPPO(AsymmetricLstmPolicy if asym else FastLstmPolicy, env, policy_kwargs=pk, seed=seed,
+                            device=device,
                             tensorboard_log=tensorboard_log, verbose=0, **kw)
     raise ValueError(f"unknown algo {cfg['algo']!r}")
 

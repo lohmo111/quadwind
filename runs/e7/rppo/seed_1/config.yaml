@@ -1,4 +1,4 @@
-name: rppo__v2_persistent
+name: rppo
 algo: rppo
 total_timesteps: 3000000
 n_envs: 16
@@ -41,18 +41,3 @@ policy_kwargs:
   n_lstm_layers: 1
   shared_lstm: false
   enable_critic_lstm: true
-space_overrides:
-  jump_rate:
-  - 0.0
-  - 0.0
-  slow_tau:
-  - 10.0
-  - 20.0
-  gust_rate:
-  - 0.0
-  - 0.05
-  weak_motor_prob:
-  - 0.5
-  - 0.5
-variants:
-- v2_persistent

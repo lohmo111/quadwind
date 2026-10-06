@@ -266,7 +266,8 @@ SCENARIO_SPACES = {
 }
 
 # probe — отдельный набор для анализа памяти (обучение зондов), чтобы не трогать test до заморозки
-SUITE_SIZES = {"val": 64, "test_id": 200, "probe": 256, **{k: 100 for k in OOD_SPACES},
+# safety — 1000 эпизодов для оценки доли падений (на 64 эпизодах падения 1–5% не видны)
+SUITE_SIZES = {"val": 256, "test_id": 200, "probe": 256, "safety": 1000, **{k: 100 for k in OOD_SPACES},
                **{k: 32 for k in SCENARIO_SPACES}}
 WIND_SWEEP_SPEEDS = (0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0)
 WIND_SWEEP_DIRS = (0.0, 0.5 * np.pi, np.pi, 1.5 * np.pi)
@@ -303,7 +304,7 @@ def make_suite(name: str, n: int | None = None, space: ConditionSpace | None = N
             c.wind = replace(c.wind, speed=WIND_COMPASS_SPEED, direction=from_deg_to_direction(from_deg))
             conds.append(c)
         return conds[:n] if n else conds
-    if name in ("val", "test_id", "probe"):
+    if name in ("val", "test_id", "probe", "safety"):
         space = space or TRAIN_SPACE
     elif name in OOD_SPACES:
         space = OOD_SPACES[name]
