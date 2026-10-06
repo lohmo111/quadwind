@@ -6,7 +6,10 @@
   "sb3": "2.9.0",
   "sb3_contrib": "2.9.0",
   "gymnasium": "1.4.0",
-  "time": "2026-10-06 19:10:39",
+  "time": "2026-10-06 19:54:07",
   "seed": 0,
-  "status": "running"
+  "status": "done",
+  "train_seconds": 2606.0,
+  "steps_per_second": 1151.2,
+  "best_val_rmse_capped": 0.03136675673535591
 }

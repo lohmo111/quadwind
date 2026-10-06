@@ -1,7 +1,7 @@
 # S3: гиперпараметры RPPO (по одному изменению), curriculum
-configs/rppo.yaml | configs/hp/lr1e-4.yaml | 0
-configs/rppo.yaml | configs/hp/nsteps256.yaml | 0
-configs/rppo.yaml | configs/hp/lstm128.yaml | 0
-configs/rppo.yaml | configs/hp/epochs5.yaml | 0
-configs/rppo.yaml | configs/hp/ent003.yaml | 0
-configs/rppo.yaml | configs/arch/nocurr.yaml | 0
+configs/rppo.yaml | configs/env/pi.yaml+configs/hp/lr1e-4.yaml | 0
+configs/rppo.yaml | configs/env/pi.yaml+configs/hp/nsteps256.yaml | 0
+configs/rppo.yaml | configs/env/pi.yaml+configs/hp/lstm128.yaml | 0
+configs/rppo.yaml | configs/env/pi.yaml+configs/hp/epochs5.yaml | 0
+configs/rppo.yaml | configs/env/pi.yaml+configs/hp/ent003.yaml | 0
+configs/rppo.yaml | configs/env/pi.yaml+configs/arch/nocurr.yaml | 0
