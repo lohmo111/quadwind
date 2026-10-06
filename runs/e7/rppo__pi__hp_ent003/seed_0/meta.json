@@ -1,0 +1,15 @@
+{
+  "python": "3.13.14",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "numpy": "2.5.3",
+  "torch": "2.14.1+cpu",
+  "sb3": "2.9.0",
+  "sb3_contrib": "2.9.0",
+  "gymnasium": "1.4.0",
+  "time": "2026-10-06 23:10:12",
+  "seed": 0,
+  "status": "done",
+  "train_seconds": 2836.9,
+  "steps_per_second": 1057.5,
+  "best_val_rmse_capped": 0.047518732087939886
+}

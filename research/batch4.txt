@@ -1,0 +1,16 @@
+# S6: подтверждение кандидатов (PI-контур + безопасная награда), 3 сида
+configs/rppo.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/asym.yaml+configs/hp/epochs5.yaml+configs/hp/lstm128.yaml | 0
+configs/rppo.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/asym.yaml+configs/hp/epochs5.yaml+configs/hp/lstm128.yaml | 1
+configs/rppo.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/asym.yaml+configs/hp/epochs5.yaml+configs/hp/lstm128.yaml | 2
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/asym.yaml | 0
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/asym.yaml | 1
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/asym.yaml | 2
+configs/ppo_mlp.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/residual.yaml | 0
+configs/ppo_mlp.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/residual.yaml | 1
+configs/ppo_mlp.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/residual.yaml | 2
+configs/ppo_stack16.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/asym.yaml | 0
+configs/ppo_stack16.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/asym.yaml | 1
+configs/ppo_stack16.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/asym.yaml | 2
+configs/ppo_mlp.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/asym.yaml | 0
+configs/ppo_mlp.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/asym.yaml | 1
+configs/ppo_mlp.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/asym.yaml | 2

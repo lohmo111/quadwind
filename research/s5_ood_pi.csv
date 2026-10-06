@@ -1,0 +1,51 @@
+suite,method,med,crash
+test_id,PID-PI,3.1712958724090026,0.0
+test_id,MLP+I safe,2.635176528907986,0.0
+test_id,RPPO safe,3.1701920157978014,0.5
+test_id,RPPO asym,2.730377985668041,0.0
+test_id,Resid MLP,3.007326985265634,0.0
+ood_strong_wind,PID-PI,8.020400299289559,0.0
+ood_strong_wind,MLP+I safe,6.7130643475910965,0.0
+ood_strong_wind,RPPO safe,11.347167517183529,10.0
+ood_strong_wind,RPPO asym,12.23340097658188,2.0
+ood_strong_wind,Resid MLP,7.3365509009509555,0.0
+ood_heavy,PID-PI,3.2170924089682735,0.0
+ood_heavy,MLP+I safe,2.349424379346014,0.0
+ood_heavy,RPPO safe,4.069635301859052,1.0
+ood_heavy,RPPO asym,2.787286365501069,0.0
+ood_heavy,Resid MLP,2.9516332583697107,0.0
+ood_light,PID-PI,3.336280604156393,0.0
+ood_light,MLP+I safe,3.2105057598014275,0.0
+ood_light,RPPO safe,5.162602488590587,6.0
+ood_light,RPPO asym,4.06566402388771,3.0
+ood_light,Resid MLP,2.944350620296052,0.0
+ood_weak_motor,PID-PI,3.9214438296168512,6.0
+ood_weak_motor,MLP+I safe,3.5896418384542867,22.0
+ood_weak_motor,RPPO safe,4.2973170129228615,18.0
+ood_weak_motor,RPPO asym,3.34133659062872,16.0
+ood_weak_motor,Resid MLP,3.3793034529291153,4.0
+ood_slow_motor,PID-PI,7.293543876901441,27.0
+ood_slow_motor,MLP+I safe,2.884261298963062,0.0
+ood_slow_motor,RPPO safe,3.282847423880825,1.0
+ood_slow_motor,RPPO asym,3.028486960604572,1.0
+ood_slow_motor,Resid MLP,3.5935925702473477,17.0
+ood_dryden,PID-PI,2.747278726388622,0.0
+ood_dryden,MLP+I safe,2.0620171505484635,0.0
+ood_dryden,RPPO safe,2.8428400270918077,1.0
+ood_dryden,RPPO asym,2.20362897373756,1.0
+ood_dryden,Resid MLP,2.5296201451181304,0.0
+ood_noisy,PID-PI,3.112159116314342,0.0
+ood_noisy,MLP+I safe,2.674284654591604,0.0
+ood_noisy,RPPO safe,3.647407179718715,0.0
+ood_noisy,RPPO asym,3.0635503283795753,0.0
+ood_noisy,Resid MLP,3.08513022898502,0.0
+ood_delay,PID-PI,8.115254200909478,26.0
+ood_delay,MLP+I safe,3.2208830805448105,31.0
+ood_delay,RPPO safe,4.822776143060089,66.0
+ood_delay,RPPO asym,3.9774208706844503,43.0
+ood_delay,Resid MLP,4.711344449784778,16.0
+ood_combined,PID-PI,7.6631219294275965,0.0
+ood_combined,MLP+I safe,5.096104413162151,5.0
+ood_combined,RPPO safe,8.749766627050565,21.0
+ood_combined,RPPO asym,7.987235158590611,2.0
+ood_combined,Resid MLP,6.3616709199012185,0.0

@@ -1,0 +1,5 @@
+# S4d: можно ли научить LSTM интегрированию?
+configs/rppo.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/rw/ss_strong.yaml+configs/hp/epochs5.yaml | 0
+configs/rppo.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/env/steadywind.yaml+configs/hp/epochs5.yaml | 0
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/env/steadywind.yaml | 0
+configs/ppo_mlp.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/rw/ss_strong.yaml | 0
