@@ -1,0 +1,3 @@
+name: ppo_mlp_noprev     # M2': совсем без памяти — без a_{t-1} во входе
+algo: ppo
+env: {include_prev_action: false}

@@ -1,0 +1,3 @@
+name: ppo_stack16        # M3: 16 кадров = 320 мс — главный контроль для LSTM
+algo: ppo
+env: {history: 16}

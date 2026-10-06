@@ -1,0 +1,3 @@
+# Подбор гиперпараметров RPPO на val (по одному изменению от базы)
+variant: hp_lr1e-4
+algo_kwargs: {learning_rate: 1.0e-4}

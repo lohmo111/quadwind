@@ -1,0 +1,2 @@
+name: rppo               # M5: наш метод — Recurrent PPO (LSTM 64)
+algo: rppo

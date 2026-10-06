@@ -1,0 +1,9 @@
+# E7 / V4: V1 + V2 + V3 вместе
+variant: v4_all
+env: {sigma_near: 0.05}
+space_overrides:
+  jump_rate: [0.0, 0.0]
+  slow_tau: [10.0, 20.0]
+  gust_rate: [0.0, 0.05]
+  weak_motor_prob: [0.5, 0.5]
+  noise_scale: {lo: 1.0, hi: 2.5, easy: [0.5, 0.5]}

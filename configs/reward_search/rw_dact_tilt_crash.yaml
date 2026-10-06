@@ -1,0 +1,4 @@
+base: ../base.yaml
+name: rw_dact_tilt_crash
+algo: ppo
+env: {w_dact: 0.5, w_tilt: 0.3, w_rate: 0.03, cost_saturation: tanh, crash_penalty: 50.0}

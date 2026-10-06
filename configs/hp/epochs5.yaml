@@ -1,0 +1,2 @@
+variant: hp_epochs5
+algo_kwargs: {n_epochs: 5, batch_size: 4096}

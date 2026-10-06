@@ -1,0 +1,35 @@
+# Общие настройки всех RL-методов. Файл метода переопределяет только отличающиеся ключи.
+name: base
+algo: ppo                    # ppo | rppo
+total_timesteps: 10000000
+n_envs: 16
+train_space: train           # train (полная рандомизация) | calm (без ветра и скрытых изменений)
+env: {}                      # переопределения EnvConfig (quadwind/env.py)
+curriculum:
+  start: 0.0                 # difficulty в начале обучения
+  ramp_fraction: 0.3         # difficulty = 1 к 30% бюджета шагов
+eval:
+  freq: 250000               # шагов между оценками на val
+  suite: val
+  n: null                    # null = весь набор (64 эпизода)
+normalize: {obs: true, reward: true, clip_obs: 10.0}
+lr_schedule: linear
+algo_kwargs:
+  learning_rate: 3.0e-4
+  n_steps: 512               # для RPPO это и максимальная длина обратного прохода по времени (BPTT)
+  batch_size: 2048
+  n_epochs: 10
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  ent_coef: 0.0
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+policy_kwargs:
+  net_arch: {pi: [128, 128], vf: [128, 128]}
+  activation_fn: tanh
+  log_std_init: -1.0
+  lstm_hidden_size: 64       # только для rppo
+  n_lstm_layers: 1
+  shared_lstm: false
+  enable_critic_lstm: true

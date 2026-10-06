@@ -1,0 +1,2 @@
+variant: hp_nsteps256
+algo_kwargs: {n_steps: 256, batch_size: 1024}

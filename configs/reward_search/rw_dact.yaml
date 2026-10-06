@@ -1,0 +1,4 @@
+base: ../base.yaml
+name: rw_dact
+algo: ppo
+env: {w_dact: 0.5, cost_saturation: tanh}

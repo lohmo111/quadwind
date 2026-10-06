@@ -1,0 +1,3 @@
+name: rppo_calm          # M6: та же модель, но обучение только в штиль (без рандомизации)
+algo: rppo
+train_space: calm

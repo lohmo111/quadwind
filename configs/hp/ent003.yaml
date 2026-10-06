@@ -1,0 +1,2 @@
+variant: hp_ent003
+algo_kwargs: {ent_coef: 0.003}

@@ -1,0 +1,2 @@
+variant: hp_lstm128
+policy_kwargs: {lstm_hidden_size: 128}

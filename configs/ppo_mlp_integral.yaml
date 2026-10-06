@@ -1,0 +1,3 @@
+name: ppo_mlp_integral   # M3b: «ручная память» — интеграл наблюдаемой ошибки позиции во входе
+algo: ppo
+env: {obs_integral: true}

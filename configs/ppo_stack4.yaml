@@ -1,0 +1,3 @@
+name: ppo_stack4         # M3: короткая явная память, 4 кадра = 80 мс
+algo: ppo
+env: {history: 4}

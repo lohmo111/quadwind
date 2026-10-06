@@ -1,0 +1,18 @@
+# окружение и кэши (numba тоже кэширует в __pycache__)
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+logs/
+
+# результаты обучения: в git — лёгкое (config.yaml, meta.json, val_history.csv)
+# и лучшие модели актуальных серий (pilot2, e7); остальное воспроизводится скриптами
+runs/**/tb/
+runs/**/final_model.zip
+runs/**/final_obs_norm.npz
+runs/**/vecnormalize.pkl
+runs/smoke/
+runs/pilot/**/best_model.zip
+runs/pilot/**/best_obs_norm.npz
+runs/reward_search/**/best_model.zip
+runs/reward_search/**/best_obs_norm.npz
