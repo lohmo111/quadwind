@@ -1,0 +1,31 @@
+{
+  "wind_slow/lstm_trained": 0.472834006779049,
+  "wind_slow/observation": 0.36001871600459406,
+  "wind_slow/lstm_random": 0.4469386976724663,
+  "wind/lstm_trained": 0.5101885654539003,
+  "wind/observation": 0.39145149005028396,
+  "wind/lstm_random": 0.48146546264612144,
+  "mass_ratio/lstm_trained": 0.8620445308876901,
+  "mass_ratio/observation": 0.6334373484735527,
+  "mass_ratio/lstm_random": 0.78966591190058,
+  "intervention": [
+    {
+      "intervention": "none",
+      "mean_err_2s": 0.031052137542865125,
+      "peak_err_2s": 0.04421437542587281,
+      "crashed": 0.0
+    },
+    {
+      "intervention": "zero_h",
+      "mean_err_2s": 0.03334538750101478,
+      "peak_err_2s": 0.05324475934594455,
+      "crashed": 0.0
+    },
+    {
+      "intervention": "swap_opposite_wind_h",
+      "mean_err_2s": 0.03425430628625848,
+      "peak_err_2s": 0.05872952230609633,
+      "crashed": 0.0
+    }
+  ]
+}

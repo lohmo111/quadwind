@@ -38,13 +38,15 @@ def main() -> None:
             line = line.split("#")[0].strip()
             if not line:
                 continue
-            config, overlay, seed = (x.strip() for x in line.split("|"))
+            parts = [x.strip() for x in line.split("|")]
+            config, overlay, seed = parts[:3]
+            steps = int(float(parts[3])) if len(parts) > 3 else None     # необязательный 4-й столбец — шаги
             overlays = [] if overlay == "-" else overlay.split("+")
-            name = load_config(config, overlays)["name"]
+            name = load_config(config, overlays)["name"] + (f"__{steps // 1_000_000}M" if steps else "")
             if (ROOT / "runs" / args.exp / name / f"seed_{seed}" / "final_model.zip").exists():
                 print(f"skip {name} seed {seed}: done")
                 continue
-            queue.append((config, overlays, name, int(seed)))
+            queue.append((config, overlays, name, int(seed), steps))
         args.seeds = []
     for seed in args.seeds:                      # сначала все методы с сидом 0, потом с сидом 1, …
         for overlay in args.overlays:
@@ -54,19 +56,21 @@ def main() -> None:
                 if (ROOT / "runs" / args.exp / name / f"seed_{seed}" / "final_model.zip").exists():
                     print(f"skip {name} seed {seed}: done")
                     continue
-                queue.append((config, overlays, name, seed))
+                queue.append((config, overlays, name, seed, None))
     (ROOT / "logs").mkdir(exist_ok=True)
     running: list[tuple[subprocess.Popen, str]] = []
     t0 = time.time()
     while queue or running:
         while queue and len(running) < args.parallel:
-            config, overlays, name, seed = queue.pop(0)
+            config, overlays, name, seed, steps = queue.pop(0)
             cmd = [sys.executable, str(ROOT / "scripts" / "train.py"), "--config", config, "--seed", str(seed),
                    "--exp", args.exp, "--threads", str(args.threads)]
             for overlay in overlays:
                 cmd += ["--overlay", overlay]
-            if args.total_steps:
-                cmd += ["--total-steps", str(args.total_steps)]
+            if steps or args.total_steps:
+                cmd += ["--total-steps", str(steps or args.total_steps)]
+            if steps:
+                cmd += ["--name-suffix", f"__{steps // 1_000_000}M"]
             log = open(ROOT / "logs" / f"{args.exp}_{name}_s{seed}.log", "w")
             running.append((subprocess.Popen(cmd, stdout=log, stderr=subprocess.STDOUT, cwd=ROOT), f"{name} s{seed}"))
             print(f"[{(time.time() - t0) / 60:6.1f} min] start {name} seed {seed}  (queue: {len(queue)})")

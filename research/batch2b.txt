@@ -1,0 +1,5 @@
+# подтверждение безопасной награды (сиды 1–2)
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml | 1
+configs/rppo.yaml | configs/env/pi.yaml+configs/rw/safe.yaml | 1
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml | 2
+configs/rppo.yaml | configs/env/pi.yaml+configs/rw/safe.yaml | 2

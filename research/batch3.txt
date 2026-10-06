@@ -5,3 +5,6 @@ configs/rppo.yaml | configs/env/pi.yaml+configs/hp/lstm128.yaml | 0
 configs/rppo.yaml | configs/env/pi.yaml+configs/hp/epochs5.yaml | 0
 configs/rppo.yaml | configs/env/pi.yaml+configs/hp/ent003.yaml | 0
 configs/rppo.yaml | configs/env/pi.yaml+configs/arch/nocurr.yaml | 0
+# S3: бюджет — честно ли сравнивать на 3 млн шагов? (RPPO учится медленнее)
+configs/rppo.yaml | configs/env/pi.yaml | 0 | 10000000
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml | 0 | 10000000

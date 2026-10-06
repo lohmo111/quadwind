@@ -34,9 +34,11 @@ def main() -> None:
     ap.add_argument("--eval-freq", type=int, default=None)
     ap.add_argument("--threads", type=int, default=2, help="потоки torch на процесс (для параллельных запусков)")
     ap.add_argument("--device", default="cpu")
+    ap.add_argument("--name-suffix", default="", help="добавить к имени запуска (например, __10M)")
     args = ap.parse_args()
 
     cfg = load_config(args.config, args.overlay)
+    cfg["name"] += args.name_suffix
     if args.total_steps:
         cfg["total_timesteps"] = args.total_steps
     if args.eval_freq:
