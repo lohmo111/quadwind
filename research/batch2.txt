@@ -1,9 +1,11 @@
-# S2: цель (безопасность подлёта, статическая ошибка), S1: начальное смещение, S3/S4: архитектуры
+# Партия 2 (по приоритету): residual RL, RPPO+∫, безопасная награда, асимметричный критик, начальное смещение, цель ss
+configs/rppo.yaml | configs/arch/residual.yaml | 0
+configs/ppo_mlp.yaml | configs/arch/residual.yaml | 0
+configs/rppo_integral.yaml | - | 0
 configs/rppo.yaml | configs/rw/safe.yaml | 0
 configs/ppo_mlp_integral.yaml | configs/rw/safe.yaml | 0
+configs/ppo_mlp.yaml | configs/arch/asym.yaml | 0
 configs/rppo.yaml | configs/env/init03.yaml | 0
 configs/ppo_mlp_integral.yaml | configs/env/init03.yaml | 0
-configs/rppo_integral.yaml | - | 0
 configs/rppo.yaml | configs/rw/ss.yaml | 0
-configs/ppo_mlp.yaml | configs/arch/asym.yaml | 0
 configs/rppo.yaml | configs/arch/asym.yaml | 0

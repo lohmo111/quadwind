@@ -235,3 +235,24 @@ def test_wind_override_replaces_episode_series():
     core.wind_override = None
     core.step(np.zeros((2, 4)))
     assert np.allclose(np.linalg.norm(core.true_state()["wind"], axis=1), 1.0)
+
+
+def test_residual_pid_zero_action_equals_pid():
+    """Нулевая поправка агента — ровно PID по тем же наблюдениям."""
+    import json
+    from quadwind.control import PIDGains
+    from quadwind.policies import PIDPolicy
+    cfg = EnvConfig(residual_pid="configs/pid_tuned_pi.json")
+    conds = make_suite("test_id", 3)
+    res = HoverCore(cfg, 3)
+    res.reset_envs([0, 1, 2], conds)
+    ref = HoverCore(EnvConfig(), 3)
+    ref.reset_envs([0, 1, 2], conds)
+    pid = PIDPolicy(EnvConfig(), PIDGains(**json.load(open("configs/pid_tuned_pi.json"))))
+    pid.reset(3)
+    start = np.ones(3, bool)
+    for _ in range(100):
+        ref.step(pid.act(ref.observe(), start))
+        start[:] = False
+        res.step(np.zeros((3, 4)))
+    assert np.allclose(res.dyn.pos, ref.dyn.pos, atol=1e-9)

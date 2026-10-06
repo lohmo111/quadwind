@@ -1,0 +1,3 @@
+# Residual RL: действие = PID (pid_tuned_pi) + 0.3 · действие агента
+variant: res
+env: {residual_pid: configs/pid_residual.json, residual_scale: 0.3}

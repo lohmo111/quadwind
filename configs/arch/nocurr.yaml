@@ -1,0 +1,3 @@
+# Без curriculum: сразу полная сложность
+variant: nocurr
+curriculum: {start: 1.0, ramp_fraction: 0.3}

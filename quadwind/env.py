@@ -49,6 +49,8 @@ class EnvConfig:
     include_prev_action: bool = True
     obs_integral: bool = False                # «ручная память»: ∫(наблюдаемая e_p)dt, |·| ≤ 1 м·с
     privileged: bool = False
+    residual_pid: str | None = None           # путь к коэффициентам PID: действие = PID + residual_scale · a
+    residual_scale: float = 0.3
     noise_pos: float = 0.005                  # м
     noise_vel: float = 0.03                   # м/с
     noise_att: float = 0.01                   # рад
@@ -111,6 +113,14 @@ class HoverCore:
         self.dyn = QuadDynamics(params, n, 1.0 / cfg.sim_freq)
         self.rate_gains = np.asarray(cfg.rate_gains, dtype=float)
         self.rate_ki = np.asarray(cfg.rate_ki, dtype=float)
+        self.res_pid = None
+        if cfg.residual_pid:                      # residual RL: агент выдаёт поправку к действию PID
+            import json
+            from pathlib import Path
+            from .control import PIDGains, PositionPID
+            gains = PIDGains(**json.loads(Path(cfg.residual_pid).read_text()))
+            self.res_pid = PositionPID(params, gains, self.dt, np.asarray(cfg.rate_max, dtype=float))
+            self.res_pid.reset(n)
         self.err_ema = np.zeros((n, 3))
         self._ema_alpha = 1.0 - np.exp(-self.dt / max(cfg.ss_tau, 1e-6))
         self.mode = {"ctbr": kernels.MODE_CTBR, "attitude": kernels.MODE_ATTITUDE}[cfg.action_mode]
@@ -195,6 +205,9 @@ class HoverCore:
         self.prev_action[i] = 0.0
         self.err_integral[i] = 0.0
         self.err_ema[i] = 0.0
+        if self.res_pid is not None:
+            self.res_pid.integral[i] = 0.0
+            self.res_pid.integral_att[i] = 0.0
         self.applied_action[i] = 0.0
         self.step_count[i] = 0
 
@@ -271,6 +284,11 @@ class HoverCore:
     def step(self, action: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
         cfg, d, rows = self.cfg, self.dyn, self._rows
         a = np.clip(np.asarray(action, dtype=float).reshape(self.n, 4), -1.0, 1.0)
+        a_agent = a
+        if self.res_pid is not None:              # PID работает по тем же наблюдениям, что видит агент
+            f = self.hist[:, 0, :STATE_DIM]
+            pid_a = self.res_pid.act(f[:, 0:3], f[:, 3:6], f[:, 6:15].reshape(-1, 3, 3))
+            a = np.clip(pid_a + cfg.residual_scale * a_agent, -1.0, 1.0)
         size = cfg.max_delay + 1
         self.act_buf[rows, self.step_count % size] = a
         applied = self.act_buf[rows, (self.step_count - self.act_delay) % size]
@@ -306,7 +324,7 @@ class HoverCore:
             + cfg.w_pos_near * np.exp(-(dist / cfg.sigma_near) ** 2)
         yaw = np.arctan2(d.R[:, 1, 0], d.R[:, 0, 0])
         cost = cfg.w_vel * np.sum(d.vel**2, axis=1) + cfg.w_rate * rate**2 \
-            + cfg.w_dact * np.sum((a - self.prev_action) ** 2, axis=1) + cfg.w_act * np.sum(a**2, axis=1) \
+            + cfg.w_dact * np.sum((a - self.prev_action) ** 2, axis=1) + cfg.w_act * np.sum(a_agent**2, axis=1) \
             + cfg.w_yaw * (1.0 - np.cos(yaw)) + cfg.w_tilt * tilt**2
         if cfg.w_pos_cost or cfg.w_ss:
             self.err_ema += self._ema_alpha * (e - self.err_ema)

@@ -48,9 +48,11 @@ def main() -> None:
     ap.add_argument("--suite", default="val")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--out", default="configs/pid_tuned.json")
+    ap.add_argument("--rate-ki", type=float, nargs=3, default=None, help="I-член внутреннего контура (PI)")
     args = ap.parse_args()
 
-    cfg, conds, rng = EnvConfig(), make_suite(args.suite), np.random.default_rng(args.seed)
+    cfg = EnvConfig(rate_ki=tuple(args.rate_ki)) if args.rate_ki else EnvConfig()
+    conds, rng = make_suite(args.suite), np.random.default_rng(args.seed)
     t0 = time.perf_counter()
     best = PIDGains()
     best_score, info = score(best, cfg, conds)
