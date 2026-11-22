@@ -1,0 +1,4 @@
+# S3e: подтверждение attitude-режима (сиды 1–2)
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml | 1
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml | 2
+configs/rppo.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/hp/epochs5.yaml | 1

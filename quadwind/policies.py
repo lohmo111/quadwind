@@ -45,11 +45,10 @@ class PIDPolicy:
     """Каскадный PID поверх того же CTBR-интерфейса и тех же наблюдений, что у агента."""
 
     def __init__(self, cfg: EnvConfig, gains: PIDGains | None = None):
-        if cfg.action_mode != "ctbr":
-            raise ValueError("PIDPolicy выдаёт CTBR-действия")
         self.cfg = cfg
         self.gains = gains or PIDGains()
-        self.pid = PositionPID(CF2X, self.gains, 1.0 / cfg.ctrl_freq, np.asarray(cfg.rate_max))
+        att = (cfg.tilt_max, cfg.yaw_rate_max) if cfg.action_mode == "attitude" else None
+        self.pid = PositionPID(CF2X, self.gains, 1.0 / cfg.ctrl_freq, np.asarray(cfg.rate_max), attitude=att)
 
     def reset(self, n: int) -> None:
         self.pid.reset(n)

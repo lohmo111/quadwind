@@ -1,0 +1,3 @@
+# S3e: уровень действия — attitude против CTBR
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml | 0
+configs/rppo.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/hp/epochs5.yaml | 0

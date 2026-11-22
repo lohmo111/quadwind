@@ -1,0 +1,11 @@
+# Этап 0 + усиление LSTM (attitude, PI-контур, безопасная награда)
+# (б) рецепт RPPO в attitude: 5 эпох + LSTM 128 + асимметричный критик, 3 сида
+configs/rppo.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/arch/asym.yaml+configs/hp/epochs5.yaml+configs/hp/lstm128.yaml | 0
+configs/rppo.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/arch/asym.yaml+configs/hp/epochs5.yaml+configs/hp/lstm128.yaml | 1
+configs/rppo.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/arch/asym.yaml+configs/hp/epochs5.yaml+configs/hp/lstm128.yaml | 2
+# (а) RPPO 5 эпох, LSTM 64 в attitude: недостающий сид 2
+configs/rppo.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/hp/epochs5.yaml | 2
+# RPPO + ∫ во входе по рецепту: закрывает ли интеграл статическую ошибку LSTM-политики, сохраняя её адаптацию
+configs/rppo_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/arch/asym.yaml+configs/hp/epochs5.yaml+configs/hp/lstm128.yaml | 0
+configs/rppo_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/arch/asym.yaml+configs/hp/epochs5.yaml+configs/hp/lstm128.yaml | 1
+configs/rppo_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/arch/asym.yaml+configs/hp/epochs5.yaml+configs/hp/lstm128.yaml | 2

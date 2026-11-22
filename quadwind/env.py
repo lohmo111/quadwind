@@ -47,7 +47,8 @@ class EnvConfig:
     target: tuple = (0.0, 0.0, 1.5)
     history: int = 1
     include_prev_action: bool = True
-    obs_integral: bool = False                # «ручная память»: ∫(наблюдаемая e_p)dt, |·| ≤ 1 м·с
+    obs_integral: bool = False                # «ручная память»: ∫(наблюдаемая e_p)dt, |·| ≤ obs_integral_max
+    obs_integral_max: float = 1.0             # м·с; в attitude при 6 м/с нужен ~1 (RESEARCH_RESULTS.md, R7)
     privileged: bool = False
     residual_pid: str | None = None           # путь к коэффициентам PID: действие = PID + residual_scale · a
     residual_scale: float = 0.3
@@ -57,7 +58,7 @@ class EnvConfig:
     noise_rate: float = 0.05                  # рад/с
     max_delay: int = 4
     # награда: r = r_pos + 1 − tanh(затраты) ∈ [0, 2]; при падении r = −crash_penalty
-    # (веса выбраны перебором на val, см. PLAN.md, журнал)
+    # (веса выбраны перебором на val, см. RESEARCH_RESULTS.md, R4)
     w_pos_far: float = 0.5
     sigma_far: float = 0.5
     w_pos_near: float = 0.5
@@ -119,7 +120,8 @@ class HoverCore:
             from pathlib import Path
             from .control import PIDGains, PositionPID
             gains = PIDGains(**json.loads(Path(cfg.residual_pid).read_text()))
-            self.res_pid = PositionPID(params, gains, self.dt, np.asarray(cfg.rate_max, dtype=float))
+            att = (cfg.tilt_max, cfg.yaw_rate_max) if cfg.action_mode == "attitude" else None
+            self.res_pid = PositionPID(params, gains, self.dt, np.asarray(cfg.rate_max, dtype=float), attitude=att)
             self.res_pid.reset(n)
         self.err_ema = np.zeros((n, 3))
         self._ema_alpha = 1.0 - np.exp(-self.dt / max(cfg.ss_tau, 1e-6))
@@ -345,7 +347,8 @@ class HoverCore:
         self.hist[:, 1:] = self.hist[:, :-1]
         self.hist[:, 0] = self._frame(delayed, a)
         if cfg.obs_integral:
-            self.err_integral = np.clip(self.err_integral + delayed[:, 0:3] * self.dt, -1.0, 1.0)
+            self.err_integral = np.clip(self.err_integral + delayed[:, 0:3] * self.dt,
+                                        -cfg.obs_integral_max, cfg.obs_integral_max)
         return reward, terminated, truncated
 
     # ------------------------------------------------------------- truth view

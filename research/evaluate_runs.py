@@ -77,7 +77,8 @@ def main():
         for loop, ki in (("P", (0, 0, 0)), ("PI", (100.0, 100.0, 50.0))):
             ec = EnvConfig(rate_ki=ki)
             for lab, gg in (("pid", g), ("pd", g.without_integrators())):
-                rows.append(summarize(f"{lab}_{loop}", episodes(f"{lab}_{loop}", PIDPolicy(ec, gg), ec)))
+                # ключ кэша называет коэффициенты (pid_tuned_pi): старые pid_P / pid_PI посчитаны с pid_tuned.json
+                rows.append(summarize(f"{lab}_{loop}", episodes(f"{lab}PI_on_{loop}", PIDPolicy(ec, gg), ec)))
     for run in sorted({p for pat in args.runs for p in glob.glob(pat)}):
         run = Path(run)
         if not (run / f"{args.which}_model.zip").exists() or not (run / "final_model.zip").exists():

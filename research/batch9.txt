@@ -1,0 +1,7 @@
+# Предел ∫ во входе ±2 м·с (attitude): возвращает ли интегральное поведение при 6 м/с, не ухудшая val
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/arch/int2.yaml | 0
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/arch/int2.yaml | 1
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/arch/int2.yaml | 2
+configs/rppo_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/arch/asym.yaml+configs/hp/epochs5.yaml+configs/hp/lstm128.yaml+configs/arch/int2.yaml | 0
+configs/rppo_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/arch/asym.yaml+configs/hp/epochs5.yaml+configs/hp/lstm128.yaml+configs/arch/int2.yaml | 1
+configs/rppo_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/arch/asym.yaml+configs/hp/epochs5.yaml+configs/hp/lstm128.yaml+configs/arch/int2.yaml | 2

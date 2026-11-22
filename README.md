@@ -6,7 +6,8 @@
 
 * `research_rppo_drone_hover.html` — исследование: постановка, обоснования, литература.
 * `key_takeaways.md` — главные выводы исследования.
-* `PLAN.md` — план работ с контрольными точками и статусом.
+* `PROJECT.md` — описание проекта по блокам и план построения.
+* `RESEARCH_RESULTS.md` — итоги исследования сетапа (журнал экспериментов — `RESEARCH.md`).
 
 ## Установка (Windows / Linux / Colab)
 
@@ -34,7 +35,7 @@ pybullet не нужен: симулятор свой (NumPy + numba), пара�
 | `quadwind/evaluation.py`, `metrics.py`, `stats.py` | Прогон, метрики по истинному состоянию, IQM + бутстрап |
 | `quadwind/training.py`, `fast_lstm.py` | Сборка обучения, колбэки, ускоренная LSTM-политика |
 | `quadwind/memory.py` | Зонды и вмешательства в скрытое состояние LSTM |
-| `configs/` | `base.yaml` + конфиги методов (M2–M6 из PLAN.md), `pid_tuned.json` |
+| `configs/` | `base.yaml` + конфиги методов (M2–M8 из PROJECT.md), `pid_tuned.json` |
 | `quadwind/style.py` | Цвета методов (проверенная палитра) и стиль графиков |
 | `scripts/` | `train.py`, `run_series.py`, `evaluate.py`, `compare_variants.py`, `make_figures.py`, `tune_pid.py`, `analyze_memory.py`, `wind_lab.py` |
 

@@ -1,0 +1,27 @@
+<section id="idea" data-transition="fade" style="background:#F6F4EE;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1">Project idea: what does learned memory give?</h2>
+<div style="display:flex;gap:24px">
+<div style="flex:1;background:#FFFFFF;border:1px solid #DAD5C8;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:12px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:36px;font-weight:600">PID</h3>
+<p style="font-size:26px;color:#44506A;line-height:1.4">classic; memory = an error “piggy bank”, built by hand</p>
+</div>
+<div style="flex:1;background:#FFFFFF;border:1px solid #DAD5C8;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:12px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:36px;font-weight:600">PPO</h3>
+<p style="font-size:26px;color:#44506A;line-height:1.4">no memory: sees only the current frame</p>
+</div>
+<div style="flex:1;background:#FFFFFF;border:1px solid #DAD5C8;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:12px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:36px;font-weight:600">PPO + ∫</h3>
+<p style="font-size:26px;color:#44506A;line-height:1.4">the same piggy bank is fed to the network as input</p>
+</div>
+<div style="flex:1;background:#2F6FB0;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:12px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:36px;font-weight:600;color:#F6F4EE">RPPO</h3>
+<p style="font-size:26px;color:#E3ECF7;line-height:1.4">our method: the memory is learned</p>
+</div>
+</div>
+<p style="font-size:32px;color:#44506A;line-height:1.4">Same environment, same disturbances, same test episodes for all. We measure <b style="color:#14213D">accuracy</b> (cm), <b style="color:#14213D">crashes</b> (%) and the response to gusts and mass changes.</p>
+<div style="display:flex;align-items:center;gap:24px;background:#14213D;border-radius:16px;padding:28px 36px">
+<x-icon name="Chart" style="color:#F2A65A;width:56px;height:56px"></x-icon>
+<p style="font-size:30px;color:#E3E8F0;line-height:1.4">First validation result: RPPO holds the point with a median error of <b style="color:#F2A65A">≈ 2.5 cm</b> and <b style="color:#F2A65A">0% crashes</b>.</p>
+</div>
+<aside>[Speaker A] So, the main question of the project: what does learned memory actually give us? We put four approaches side by side: PID with its hand-made piggy bank; PPO with no memory; PPO that gets the piggy bank as an input; and our RPPO, which learns its memory by itself. All of them fly in identical conditions. We measure accuracy, crashes and how they react to gusts. A first result is already in: RPPO holds the point with a median error of about 2.5 centimetres and not a single crash in validation. More in the next part. Thank you!</aside>
+</section>

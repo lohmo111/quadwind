@@ -1,0 +1,39 @@
+<section id="rppo" data-transition="fade" style="background:#F6F4EE;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1">RPPO = PPO + LSTM</h2>
+<div style="position:absolute;left:140px;top:300px;width:240px;background:#2F6FB0;border-radius:16px;padding:20px"><p style="font-size:28px;font-weight:600;color:#F6F4EE;text-align:center">action a(t−1)</p></div>
+<div style="position:absolute;left:480px;top:300px;width:240px;background:#2F6FB0;border-radius:16px;padding:20px"><p style="font-size:28px;font-weight:600;color:#F6F4EE;text-align:center">action a(t)</p></div>
+<div style="position:absolute;left:820px;top:300px;width:240px;background:#2F6FB0;border-radius:16px;padding:20px"><p style="font-size:28px;font-weight:600;color:#F6F4EE;text-align:center">action a(t+1)</p></div>
+<div style="position:absolute;left:140px;top:480px;width:240px;height:120px;background:#14213D;border-radius:16px;padding:20px"><p style="font-size:30px;font-weight:600;color:#F2A65A;text-align:center">LSTM</p><p style="font-size:24px;color:#E3E8F0;text-align:center">memory h</p></div>
+<div style="position:absolute;left:480px;top:480px;width:240px;height:120px;background:#14213D;border-radius:16px;padding:20px"><p style="font-size:30px;font-weight:600;color:#F2A65A;text-align:center">LSTM</p><p style="font-size:24px;color:#E3E8F0;text-align:center">memory h</p></div>
+<div style="position:absolute;left:820px;top:480px;width:240px;height:120px;background:#14213D;border-radius:16px;padding:20px"><p style="font-size:30px;font-weight:600;color:#F2A65A;text-align:center">LSTM</p><p style="font-size:24px;color:#E3E8F0;text-align:center">memory h</p></div>
+<div style="position:absolute;left:140px;top:690px;width:240px;background:#FFFFFF;border:1px solid #DAD5C8;border-radius:16px;padding:20px"><p style="font-size:26px;color:#44506A;text-align:center">observation x(t−1)</p></div>
+<div style="position:absolute;left:480px;top:690px;width:240px;background:#FFFFFF;border:1px solid #DAD5C8;border-radius:16px;padding:20px"><p style="font-size:26px;color:#44506A;text-align:center">observation x(t)</p></div>
+<div style="position:absolute;left:820px;top:690px;width:240px;background:#FFFFFF;border:1px solid #DAD5C8;border-radius:16px;padding:20px"><p style="font-size:26px;color:#44506A;text-align:center">observation x(t+1)</p></div>
+<x-connector x1="260" y1="690" x2="260" y2="604" head="end" style="color:#44506A;border-width:4px"></x-connector>
+<x-connector x1="600" y1="690" x2="600" y2="604" head="end" style="color:#44506A;border-width:4px"></x-connector>
+<x-connector x1="940" y1="690" x2="940" y2="604" head="end" style="color:#44506A;border-width:4px"></x-connector>
+<x-connector x1="260" y1="480" x2="260" y2="386" head="end" style="color:#2F6FB0;border-width:4px"></x-connector>
+<x-connector x1="600" y1="480" x2="600" y2="386" head="end" style="color:#2F6FB0;border-width:4px"></x-connector>
+<x-connector x1="940" y1="480" x2="940" y2="386" head="end" style="color:#2F6FB0;border-width:4px"></x-connector>
+<x-connector x1="384" y1="540" x2="476" y2="540" head="end" style="color:#F2A65A;border-width:6px"></x-connector>
+<x-connector x1="724" y1="540" x2="816" y2="540" head="end" style="color:#F2A65A;border-width:6px"></x-connector>
+<x-connector x1="1064" y1="540" x2="1120" y2="540" head="end" style="color:#F2A65A;border-width:6px;border-style:dashed"></x-connector>
+<p style="position:absolute;left:392px;top:488px;width:80px;font-size:24px;font-weight:600;color:#B85A12;text-align:center">h</p>
+<p style="position:absolute;left:732px;top:488px;width:80px;font-size:24px;font-weight:600;color:#B85A12;text-align:center">h</p>
+<p style="position:absolute;left:140px;top:240px;width:920px;font-size:26px;color:#6A7383">time steps →</p>
+<div style="position:absolute;left:1188px;top:280px;width:604px;display:flex;flex-direction:column;gap:16px">
+<div style="background:#FFFFFF;border:1px solid #DAD5C8;border-radius:16px;padding:24px 28px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:32px;font-weight:600;color:#2F6FB0">Memory flows along the chain</h3>
+<p style="font-size:26px;color:#44506A;line-height:1.4">h is passed from step to step and reset at the start of each episode</p>
+</div>
+<div style="background:#FFFFFF;border:1px solid #DAD5C8;border-radius:16px;padding:24px 28px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:32px;font-weight:600;color:#2F6FB0">Trained on 512-step chunks</h3>
+<p style="font-size:26px;color:#44506A;line-height:1.4">≈ 10 s of flight; the error flows back through time (BPTT)</p>
+</div>
+<div style="background:#14213D;border-radius:16px;padding:24px 28px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:32px;font-weight:600;color:#F2A65A">Critic with a “cheat sheet”</h3>
+<p style="font-size:26px;color:#E3E8F0;line-height:1.4">its own LSTM; in training it sees the true wind and mass. In flight only the actor is used</p>
+</div>
+</div>
+<aside>[Speaker B] Now put them together. RPPO is PPO with an LSTM in both the actor and the critic. Every step the network takes the new observation plus its memory and decides what to do. That’s how the drone gradually figures out the wind and its own weight. We train on chunks of 512 steps — ten seconds of flight — and push the error back through time: that’s BPTT. And one trick: during training the critic gets a cheat sheet — the true wind and mass. In flight it isn’t needed; only the actor flies.</aside>
+</section>

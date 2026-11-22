@@ -1,0 +1,8 @@
+# Контроль для H5: MLP+∫ с гиперпараметрами RPPO+∫ (5 эпох, batch 4096, асим. критик) — отличие от RPPO+∫ только в LSTM
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/arch/asym.yaml+configs/hp/epochs5.yaml | 0
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/arch/asym.yaml+configs/hp/epochs5.yaml | 1
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/arch/asym.yaml+configs/hp/epochs5.yaml | 2
+# то же без асим. критика: отделить эффект PPO-гиперпараметров от критика
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/hp/epochs5.yaml | 0
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/hp/epochs5.yaml | 1
+configs/ppo_mlp_integral.yaml | configs/env/pi.yaml+configs/rw/safe.yaml+configs/arch/attitude.yaml+configs/hp/epochs5.yaml | 2

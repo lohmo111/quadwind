@@ -1,0 +1,35 @@
+<section id="task" data-transition="fade" style="background:#F6F4EE;color:#14213D;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1">Task: hold a point while invisible forces push</h2>
+<div style="display:flex;gap:48px;flex:1">
+<div style="display:flex;flex-direction:column;gap:24px;width:760px">
+<p style="font-size:32px;color:#44506A;line-height:1.4">A <b>Crazyflie 2.x</b> quadrotor (27 g) must hold a point in the air.</p>
+<div style="display:flex;gap:24px">
+<div style="flex:1;background:#FFFFFF;border:1px solid #DAD5C8;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:12px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:32px;font-weight:600;color:#2F6FB0">Sees</h3>
+<ul style="font-size:28px;line-height:1.5;color:#44506A">
+<li>where it is</li>
+<li>velocity</li>
+<li>tilt</li>
+<li>rotation</li>
+</ul>
+<p style="font-size:24px;color:#6A7383">with noise and delay</p>
+</div>
+<div style="flex:1;background:#14213D;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:12px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:32px;font-weight:600;color:#F2A65A">Doesn’t see</h3>
+<ul style="font-size:28px;line-height:1.5;color:#E3E8F0">
+<li>wind up to 3.5 m/s + gusts</li>
+<li>its mass, ±20–25%</li>
+<li>a weak motor</li>
+<li>delays</li>
+</ul>
+</div>
+</div>
+<p style="font-size:32px;line-height:1.4;color:#14213D">Disturbances must be <b>inferred from behaviour</b> — that’s the core challenge.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px">
+<img src="/_blob/40813a0aa1b73e401b73742d1f434620" alt="Our simulator: top view of the drone in a 3 m/s north wind, error and wind plots" style="width:856px;height:520px;object-fit:contain;background:#FFFFFF;border:1px solid #DAD5C8;border-radius:16px">
+<p style="font-size:24px;color:#6A7383">Our simulator: 3 m/s north wind, trajectories of different controllers</p>
+</div>
+</div>
+<aside>[Speaker A] The task sounds simple: hold a point. The drone knows where it is, how fast it’s moving and how it’s tilted — with noise and a small delay. What it doesn’t know is what’s pushing it: wind up to three and a half metres per second, its real mass, a weak motor. All of this is random in every episode. So the drone has to infer the disturbances from how it behaves. On the right is our simulator in a 3 m/s north wind.</aside>
+</section>

@@ -1,0 +1,753 @@
+group,run,suite,med_cm,crash%,peak_cm,rec_s
+PID,pid_ctbr,gust_pulse,1.1784199508778002,0.0,6.190920908763959,0.8799999999999999
+PID,pid_ctbr,mass_drop,3.67068332813379,0.0,12.19745524298526,1.9800000000000004
+PID,pid_ctbr,mass_pickup,3.6525497896346395,0.0,12.65256134558792,1.96
+PID,pid_ctbr,motor_degrade,1.546780697853115,0.0,6.4426022327176256,0.6399999999999997
+PID,pid_ctbr,ood_combined,7.663121929427591,0.0,,
+PID,pid_ctbr,ood_delay,8.115254200909474,26.0,,
+PID,pid_ctbr,ood_dryden,2.74727872638862,0.0,,
+PID,pid_ctbr,ood_heavy,3.2170924089682695,0.0,,
+PID,pid_ctbr,ood_light,3.33628060415639,0.0,,
+PID,pid_ctbr,ood_noisy,3.112159116314335,0.0,,
+PID,pid_ctbr,ood_slow_motor,7.29354387690144,27.0,,
+PID,pid_ctbr,ood_strong_wind,8.020400299289555,0.0,,
+PID,pid_ctbr,ood_weak_motor,3.921443829616845,6.0,,
+PID,pid_ctbr,push,2.145637133967265,0.0,13.27874063511087,0.96
+PID,pid_ctbr,step_gust,2.636468972553045,0.0,5.739123170712671,0.6799999999999997
+PID,pid_ctbr,test_id,3.1712958724089995,0.0,,
+PID (attitude),pid_att,gust_pulse,1.13239399409381,0.0,5.824612117198489,0.8399999999999999
+PID (attitude),pid_att,mass_drop,2.300202385263165,0.0,6.222188731217635,1.34
+PID (attitude),pid_att,mass_pickup,2.252873512362885,0.0,6.853822232674245,1.4400000000000004
+PID (attitude),pid_att,motor_degrade,1.2976392565724402,0.0,6.362846628655461,0.6200000000000001
+PID (attitude),pid_att,ood_combined,5.5888747912216905,0.0,,
+PID (attitude),pid_att,ood_delay,7.29854784961103,0.0,,
+PID (attitude),pid_att,ood_dryden,2.33384268657101,0.0,,
+PID (attitude),pid_att,ood_heavy,2.8469467674380002,0.0,,
+PID (attitude),pid_att,ood_light,2.98391549803189,0.0,,
+PID (attitude),pid_att,ood_noisy,2.917811414879555,0.0,,
+PID (attitude),pid_att,ood_slow_motor,3.0630837401782602,4.0,,
+PID (attitude),pid_att,ood_strong_wind,5.7337732806334145,0.0,,
+PID (attitude),pid_att,ood_weak_motor,3.026307682429645,0.0,,
+PID (attitude),pid_att,push,2.154021644482235,0.0,12.717124803458418,0.9400000000000004
+PID (attitude),pid_att,step_gust,2.150163207572265,0.0,5.307569018931475,0.5600000000000005
+PID (attitude),pid_att,test_id,2.693179728999875,0.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_0,gust_pulse,1.836407210023375,0.0,6.25919597843392,0.8799999999999999
+MLP (asym),ppo_mlp__pi__safe__asym__seed_0,mass_drop,1.3984709896542151,0.0,2.1366413577117953,0.0
+MLP (asym),ppo_mlp__pi__safe__asym__seed_0,mass_pickup,1.19058133362634,0.0,1.873332946442845,0.0
+MLP (asym),ppo_mlp__pi__safe__asym__seed_0,motor_degrade,1.544180106054105,0.0,5.740324920769255,0.6399999999999997
+MLP (asym),ppo_mlp__pi__safe__asym__seed_0,ood_combined,9.61640175523257,14.000000000000002,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_0,ood_delay,6.330324211655815,26.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_0,ood_dryden,3.3250840673523254,0.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_0,ood_heavy,4.090149851344645,2.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_0,ood_light,5.76424216070017,1.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_0,ood_noisy,3.95370686925962,0.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_0,ood_slow_motor,4.19525866459938,1.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_0,ood_strong_wind,12.93641652690698,3.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_0,ood_weak_motor,4.1938678289430795,20.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_0,push,2.824800276928055,0.0,14.064370931646705,1.12
+MLP (asym),ppo_mlp__pi__safe__asym__seed_0,step_gust,3.351409745318825,0.0,5.817312596670495,0.6799999999999997
+MLP (asym),ppo_mlp__pi__safe__asym__seed_0,test_id,3.5534583215507953,0.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_1,gust_pulse,1.927148462509665,0.0,6.384957080258285,0.8799999999999999
+MLP (asym),ppo_mlp__pi__safe__asym__seed_1,mass_drop,1.3797797114604449,0.0,2.15244364002624,0.0
+MLP (asym),ppo_mlp__pi__safe__asym__seed_1,mass_pickup,1.031977481127745,0.0,1.5760322228259052,0.0
+MLP (asym),ppo_mlp__pi__safe__asym__seed_1,motor_degrade,1.670508662055685,0.0,5.91785165598204,0.7999999999999998
+MLP (asym),ppo_mlp__pi__safe__asym__seed_1,ood_combined,8.73760301927571,10.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_1,ood_delay,6.831326920109435,18.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_1,ood_dryden,3.051898837827215,0.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_1,ood_heavy,3.5350775552056097,0.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_1,ood_light,5.97065945103542,0.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_1,ood_noisy,3.8054875469937204,0.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_1,ood_slow_motor,4.04808151828659,0.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_1,ood_strong_wind,12.47501663872884,3.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_1,ood_weak_motor,3.98290251218359,15.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_1,push,2.97669419499005,0.0,14.339116617809411,1.1799999999999995
+MLP (asym),ppo_mlp__pi__safe__asym__seed_1,step_gust,3.2002900238512657,0.0,5.7998947618230146,0.69
+MLP (asym),ppo_mlp__pi__safe__asym__seed_1,test_id,3.45877936104262,0.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_2,gust_pulse,2.0423127792341496,0.0,6.288124806765555,0.9000000000000004
+MLP (asym),ppo_mlp__pi__safe__asym__seed_2,mass_drop,1.5819561307364,0.0,2.39665275995781,0.0
+MLP (asym),ppo_mlp__pi__safe__asym__seed_2,mass_pickup,1.21544031359413,0.0,1.8711604826574053,0.0
+MLP (asym),ppo_mlp__pi__safe__asym__seed_2,motor_degrade,1.846316652021565,0.0,6.088951262654666,0.7400000000000002
+MLP (asym),ppo_mlp__pi__safe__asym__seed_2,ood_combined,9.191467964320161,9.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_2,ood_delay,5.07063125701724,37.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_2,ood_dryden,3.16348800300056,1.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_2,ood_heavy,3.7255000645087244,0.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_2,ood_light,5.837304418639865,4.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_2,ood_noisy,3.8081862640555046,0.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_2,ood_slow_motor,3.7932714010461797,7.000000000000001,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_2,ood_strong_wind,11.90323757846776,6.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_2,ood_weak_motor,4.134256418797079,23.0,,
+MLP (asym),ppo_mlp__pi__safe__asym__seed_2,push,2.9425512900971103,0.0,14.009644589457846,1.1000000000000003
+MLP (asym),ppo_mlp__pi__safe__asym__seed_2,step_gust,3.1787340504534205,0.0,5.859882454796385,0.71
+MLP (asym),ppo_mlp__pi__safe__asym__seed_2,test_id,3.50068539532129,1.5,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_0,gust_pulse,1.644456327199685,0.0,6.700400103168336,1.5200000000000005
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_0,mass_drop,0.9091728716347651,0.0,2.581330288492265,0.0
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_0,mass_pickup,1.0031439957569,0.0,2.368014243191425,0.0
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_0,motor_degrade,2.267298743478845,0.0,11.07301983920153,1.0300000000000002
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_0,ood_combined,8.776095708354461,2.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_0,ood_delay,4.89909612160565,26.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_0,ood_dryden,2.18053222445392,1.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_0,ood_heavy,2.71520862704491,0.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_0,ood_light,3.69685022830071,1.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_0,ood_noisy,3.09985476292965,0.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_0,ood_slow_motor,3.1344792445703553,0.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_0,ood_strong_wind,13.17974427326207,1.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_0,ood_weak_motor,5.112095068034675,10.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_0,push,3.533621433591225,0.0,14.93218572270808,1.5100000000000002
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_0,step_gust,1.75372678609904,0.0,5.914660689535685,0.7599999999999998
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_0,test_id,2.691676168987195,0.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_1,gust_pulse,2.175726028528775,0.0,7.614346000507695,1.66
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_1,mass_drop,1.5744475858238398,0.0,3.8331784819651356,0.0
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_1,mass_pickup,1.7210931652725998,0.0,2.7025405610330804,0.0
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_1,motor_degrade,2.91430144164923,0.0,11.89398587571319,1.1799999999999995
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_1,ood_combined,12.20151107686884,14.000000000000002,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_1,ood_delay,7.53352454047245,35.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_1,ood_dryden,3.134300916829955,2.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_1,ood_heavy,3.6696250557030297,6.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_1,ood_light,5.35219701925738,5.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_1,ood_noisy,4.26881466620509,1.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_1,ood_slow_motor,4.338403263503,2.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_1,ood_strong_wind,18.774719441702885,10.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_1,ood_weak_motor,7.0209505696844,42.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_1,push,3.8809875282645447,0.0,16.10990606439241,1.7200000000000002
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_1,step_gust,2.6590162263551953,0.0,7.539019560940555,1.0
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_1,test_id,3.82353277043018,1.5,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_2,gust_pulse,1.5568014513955448,0.0,6.00674945922241,1.4700000000000002
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_2,mass_drop,1.043899828584935,0.0,3.19231691222214,0.0
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_2,mass_pickup,1.14466362426025,0.0,2.29098724880067,0.0
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_2,motor_degrade,2.174385916001155,0.0,9.93262595047306,1.0600000000000005
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_2,ood_combined,9.89054463117538,3.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_2,ood_delay,4.523362495251345,12.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_2,ood_dryden,2.090931396572665,0.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_2,ood_heavy,2.514625637179235,0.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_2,ood_light,3.5565120955389995,0.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_2,ood_noisy,3.0269370040412755,0.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_2,ood_slow_motor,2.74029554567106,0.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_2,ood_strong_wind,12.2818137152048,5.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_2,ood_weak_motor,4.90592823133569,18.0,,
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_2,push,3.32943755011645,0.0,14.337614653441424,1.4500000000000002
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_2,step_gust,1.512680376996625,0.0,5.3631287760994795,0.6100000000000003
+MLP-k16 (asym),ppo_stack16__pi__safe__asym__seed_2,test_id,2.432791932355725,0.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_0,gust_pulse,1.31759831021875,0.0,6.55207500094023,0.92
+MLP+∫,ppo_mlp_integral__pi__safe__seed_0,mass_drop,1.16730981909008,0.0,2.978080582514205,0.0
+MLP+∫,ppo_mlp_integral__pi__safe__seed_0,mass_pickup,1.1748214160972401,0.0,3.21861330477235,0.0
+MLP+∫,ppo_mlp_integral__pi__safe__seed_0,motor_degrade,1.39398123226168,0.0,6.95222161585603,0.71
+MLP+∫,ppo_mlp_integral__pi__safe__seed_0,ood_combined,5.09610441316215,5.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_0,ood_delay,3.2208830805448097,31.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_0,ood_dryden,2.06201715054846,0.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_0,ood_heavy,2.3494243793460052,0.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_0,ood_light,3.21050575980142,0.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_0,ood_noisy,2.6742846545916,0.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_0,ood_slow_motor,2.8842612989630605,0.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_0,ood_strong_wind,6.713064347591091,0.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_0,ood_weak_motor,3.58964183845428,22.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_0,push,2.730943999703335,0.0,14.354451578945405,1.21
+MLP+∫,ppo_mlp_integral__pi__safe__seed_0,step_gust,1.7956243348900849,0.0,5.85623574865406,0.7800000000000002
+MLP+∫,ppo_mlp_integral__pi__safe__seed_0,test_id,2.63517652890798,0.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_1,gust_pulse,1.394501660534845,0.0,6.642375988827745,0.9300000000000002
+MLP+∫,ppo_mlp_integral__pi__safe__seed_1,mass_drop,1.35471510198984,0.0,3.608462700669385,0.0
+MLP+∫,ppo_mlp_integral__pi__safe__seed_1,mass_pickup,1.296687609005545,0.0,3.79292440887022,0.0
+MLP+∫,ppo_mlp_integral__pi__safe__seed_1,motor_degrade,1.3190375094906102,0.0,6.558456793628451,0.6799999999999997
+MLP+∫,ppo_mlp_integral__pi__safe__seed_1,ood_combined,4.75270190145217,13.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_1,ood_delay,3.11688349790843,35.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_1,ood_dryden,2.172259726141575,0.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_1,ood_heavy,2.3055535858921,3.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_1,ood_light,3.23726295394349,0.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_1,ood_noisy,2.79996166892713,0.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_1,ood_slow_motor,2.70259748901302,1.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_1,ood_strong_wind,6.133166295001945,4.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_1,ood_weak_motor,3.4050427037154996,16.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_1,push,2.886901808167595,0.0,14.173278463519528,1.21
+MLP+∫,ppo_mlp_integral__pi__safe__seed_1,step_gust,1.768372174604885,0.0,6.218895914385595,0.79
+MLP+∫,ppo_mlp_integral__pi__safe__seed_1,test_id,2.561125069794285,0.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_2,gust_pulse,1.3096766713011951,0.0,6.443528085047881,0.9100000000000001
+MLP+∫,ppo_mlp_integral__pi__safe__seed_2,mass_drop,1.043979742550695,0.0,2.50906796551165,0.0
+MLP+∫,ppo_mlp_integral__pi__safe__seed_2,mass_pickup,1.0134566179176252,0.0,2.681049226203945,0.0
+MLP+∫,ppo_mlp_integral__pi__safe__seed_2,motor_degrade,1.2026420660856751,0.0,5.740915510120774,0.6399999999999997
+MLP+∫,ppo_mlp_integral__pi__safe__seed_2,ood_combined,4.883489176260495,12.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_2,ood_delay,3.80289411511389,30.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_2,ood_dryden,1.8916306449395799,0.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_2,ood_heavy,2.10607179974625,0.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_2,ood_light,2.894170465134405,0.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_2,ood_noisy,2.6283535428889304,0.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_2,ood_slow_motor,2.617882969940475,0.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_2,ood_strong_wind,6.46647592926866,1.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_2,ood_weak_motor,3.273103570974435,26.0,,
+MLP+∫,ppo_mlp_integral__pi__safe__seed_2,push,2.53740840244732,0.0,14.012788465898304,1.1400000000000006
+MLP+∫,ppo_mlp_integral__pi__safe__seed_2,step_gust,1.7383933610992448,0.0,5.750954552049261,0.73
+MLP+∫,ppo_mlp_integral__pi__safe__seed_2,test_id,2.51871404434714,0.5,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_0,gust_pulse,1.809673136661085,0.0,7.006260253787469,0.96
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_0,mass_drop,1.503181562953845,0.0,3.307177073500775,0.0
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_0,mass_pickup,1.51460704962728,0.0,2.98545786589025,0.0
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_0,motor_degrade,1.6893224681486103,0.0,6.512868678022135,0.7000000000000002
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_0,ood_combined,5.2046006653872805,3.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_0,ood_delay,3.9488303983233703,18.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_0,ood_dryden,2.410784515473385,0.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_0,ood_heavy,2.47265945384917,3.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_0,ood_light,3.4754809954980703,0.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_0,ood_noisy,2.9954667075156696,0.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_0,ood_slow_motor,3.17585470191237,1.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_0,ood_strong_wind,7.8548705410787205,2.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_0,ood_weak_motor,3.61335520621126,21.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_0,push,2.98788167507848,0.0,14.929249687277995,1.2199999999999998
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_0,step_gust,2.19596453071315,0.0,6.211791196984715,0.8600000000000003
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_0,test_id,3.0208382571557597,0.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_1,gust_pulse,1.79436011663878,0.0,6.555243205849251,0.92
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_1,mass_drop,1.622529907644075,0.0,3.2986339372695697,0.0
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_1,mass_pickup,1.5680154660055248,0.0,2.6525509772494895,0.0
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_1,motor_degrade,1.718439597822515,0.0,6.150668887204695,0.69
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_1,ood_combined,5.50906311969859,15.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_1,ood_delay,4.42378281281902,12.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_1,ood_dryden,2.46507180880123,0.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_1,ood_heavy,2.60257446677194,1.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_1,ood_light,3.6442462388303802,0.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_1,ood_noisy,3.15236751517262,0.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_1,ood_slow_motor,3.36273186838826,0.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_1,ood_strong_wind,8.00652900679668,3.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_1,ood_weak_motor,3.87034961579391,17.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_1,push,2.9518878359001848,0.0,14.91243156719303,1.16
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_1,step_gust,2.1899010510266,0.0,6.029236846015925,0.79
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_1,test_id,2.89015376071553,0.5,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_2,gust_pulse,1.8259362290483998,0.0,6.299882070012,0.9000000000000004
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_2,mass_drop,1.7736277450882798,0.0,3.37268117294782,0.0
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_2,mass_pickup,1.6085570777506746,0.0,2.83863517923847,0.0
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_2,motor_degrade,1.8406569306834548,0.0,6.669968366422804,0.6799999999999997
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_2,ood_combined,5.32247253659793,6.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_2,ood_delay,4.25090846120985,23.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_2,ood_dryden,2.38409253645471,1.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_2,ood_heavy,2.382658256882755,0.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_2,ood_light,3.4825141765235506,2.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_2,ood_noisy,3.147284860258555,0.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_2,ood_slow_motor,3.02114950500019,1.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_2,ood_strong_wind,7.473147246483681,2.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_2,ood_weak_motor,4.0687391728785505,20.0,,
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_2,push,2.83786251085393,0.0,14.10495305640827,1.1000000000000003
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_2,step_gust,2.430518287085105,0.0,6.115080848977394,0.77
+MLP+∫ (asym),ppo_mlp_integral__pi__safe__asym__seed_2,test_id,2.6976038277237198,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_0,gust_pulse,1.2105794537123848,0.0,6.16510731947413,0.8799999999999999
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_0,mass_drop,1.0629538974215151,0.0,2.405959502407435,0.0
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_0,mass_pickup,1.04923021649116,0.0,2.6372815583993203,0.0
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_0,motor_degrade,1.06136349846718,0.0,4.969363338910715,0.0
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_0,ood_combined,5.1289947111988194,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_0,ood_delay,4.4537117236572845,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_0,ood_dryden,1.8285424652057096,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_0,ood_heavy,2.07152213335073,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_0,ood_light,3.01487654334893,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_0,ood_noisy,2.503135265288315,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_0,ood_slow_motor,2.40133719165786,27.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_0,ood_strong_wind,9.16078643164331,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_0,ood_weak_motor,3.37333634740957,1.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_0,push,2.737662645447615,0.0,15.092847847583416,1.1799999999999995
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_0,step_gust,1.6525322995310552,0.0,5.36840628361781,0.6600000000000001
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_0,test_id,2.3696091281882796,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_1,gust_pulse,1.229298205937035,0.0,6.056329492260715,0.8799999999999999
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_1,mass_drop,1.10153203484075,0.0,2.83242839508998,0.0
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_1,mass_pickup,1.11573541810512,0.0,3.2783463483965103,0.0
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_1,motor_degrade,1.02993988919769,0.0,4.653683364366596,0.0
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_1,ood_combined,5.666879683152231,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_1,ood_delay,4.034428329977745,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_1,ood_dryden,1.9062812903535002,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_1,ood_heavy,2.140989827610685,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_1,ood_light,3.0907681221748753,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_1,ood_noisy,2.499874560753235,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_1,ood_slow_motor,2.738124677802155,24.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_1,ood_strong_wind,8.52229659534523,1.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_1,ood_weak_motor,3.2303640662490696,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_1,push,2.585548044402675,0.0,14.503579879561357,1.1400000000000006
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_1,step_gust,1.7060336969136003,0.0,5.47466864443942,0.6399999999999997
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_1,test_id,2.344686618626675,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_2,gust_pulse,1.254697639596515,0.0,6.3376456383561655,0.9000000000000004
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_2,mass_drop,1.177571411464075,0.0,3.24175989638054,0.0
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_2,mass_pickup,1.1359652779937752,0.0,3.2671993388236205,0.0
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_2,motor_degrade,1.19780813274094,0.0,5.578473153028065,0.6499999999999999
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_2,ood_combined,5.022571237424001,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_2,ood_delay,4.4210931377783,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_2,ood_dryden,1.910545239681195,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_2,ood_heavy,2.2475363768552152,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_2,ood_light,2.9958669711416848,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_2,ood_noisy,2.538065096061095,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_2,ood_slow_motor,2.567542382764585,8.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_2,ood_strong_wind,9.652635553903746,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_2,ood_weak_motor,3.70325410429361,0.0,,
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_2,push,2.73617193141783,0.0,14.974095954348293,1.12
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_2,step_gust,1.6606829109435248,0.0,5.70585076861156,0.7000000000000002
+MLP+∫ (attitude),ppo_mlp_integral__pi__safe__att__seed_2,test_id,2.35189618899886,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_0,gust_pulse,1.507774564985865,0.0,7.107444629724979,0.9400000000000004
+Residual MLP,ppo_mlp__pi__safe__res__seed_0,mass_drop,1.4053230188715449,0.0,2.57804117329173,0.0
+Residual MLP,ppo_mlp__pi__safe__res__seed_0,mass_pickup,1.5138105773557,0.0,3.4104671533420796,0.0
+Residual MLP,ppo_mlp__pi__safe__res__seed_0,motor_degrade,1.5976403539204098,0.0,6.38332626546078,0.7000000000000002
+Residual MLP,ppo_mlp__pi__safe__res__seed_0,ood_combined,6.564317432345435,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_0,ood_delay,4.702219061827525,12.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_0,ood_dryden,2.5390964913552048,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_0,ood_heavy,2.9925726546957203,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_0,ood_light,2.899812126028985,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_0,ood_noisy,3.018097954812815,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_0,ood_slow_motor,3.6795315549047447,16.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_0,ood_strong_wind,7.41921378301605,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_0,ood_weak_motor,3.3457080490232203,4.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_0,push,2.4629455820853496,0.0,13.981846167978357,1.04
+Residual MLP,ppo_mlp__pi__safe__res__seed_0,step_gust,2.578213434889255,0.0,6.348890869187635,0.7599999999999998
+Residual MLP,ppo_mlp__pi__safe__res__seed_0,test_id,3.04851271930415,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_1,gust_pulse,1.379712238553135,0.0,6.88025216398602,0.92
+Residual MLP,ppo_mlp__pi__safe__res__seed_1,mass_drop,1.54661902537749,0.0,3.1174371986269946,0.0
+Residual MLP,ppo_mlp__pi__safe__res__seed_1,mass_pickup,1.7546159740584502,0.0,4.784329956675775,0.0
+Residual MLP,ppo_mlp__pi__safe__res__seed_1,motor_degrade,1.29237053018661,0.0,5.957373125190925,0.6200000000000001
+Residual MLP,ppo_mlp__pi__safe__res__seed_1,ood_combined,6.686097717933776,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_1,ood_delay,4.49367617512979,19.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_1,ood_dryden,2.5975828215677,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_1,ood_heavy,3.08906512656025,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_1,ood_light,2.853712323755575,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_1,ood_noisy,2.936457746248085,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_1,ood_slow_motor,4.2968676367305,21.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_1,ood_strong_wind,7.7667365350091,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_1,ood_weak_motor,3.46001812928609,3.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_1,push,2.2772952343181148,0.0,13.49007907947642,1.0
+Residual MLP,ppo_mlp__pi__safe__res__seed_1,step_gust,2.643823830783965,0.0,6.271399323034174,0.7599999999999998
+Residual MLP,ppo_mlp__pi__safe__res__seed_1,test_id,3.050702883529155,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_2,gust_pulse,1.4702220040315799,0.0,7.087562977794745,0.92
+Residual MLP,ppo_mlp__pi__safe__res__seed_2,mass_drop,1.2528941240470401,0.0,2.5633946357188497,0.0
+Residual MLP,ppo_mlp__pi__safe__res__seed_2,mass_pickup,1.4196808559448901,0.0,3.503266455495825,0.0
+Residual MLP,ppo_mlp__pi__safe__res__seed_2,motor_degrade,1.33653246843019,0.0,5.98528634445346,0.6200000000000001
+Residual MLP,ppo_mlp__pi__safe__res__seed_2,ood_combined,6.391717048651466,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_2,ood_delay,5.22795530861196,13.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_2,ood_dryden,2.549957074642275,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_2,ood_heavy,2.972017311714825,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_2,ood_light,2.9453659424345697,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_2,ood_noisy,2.909756258132285,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_2,ood_slow_motor,4.2167712119496645,14.000000000000002,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_2,ood_strong_wind,7.134918189107636,0.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_2,ood_weak_motor,3.3233990362695303,4.0,,
+Residual MLP,ppo_mlp__pi__safe__res__seed_2,push,2.4343644846840697,0.0,13.885117440719764,1.04
+Residual MLP,ppo_mlp__pi__safe__res__seed_2,step_gust,2.60214021300709,0.0,6.478537769327765,0.7599999999999998
+Residual MLP,ppo_mlp__pi__safe__res__seed_2,test_id,2.98592205103065,0.0,,
+RPPO,rppo__pi__safe__seed_0,gust_pulse,2.358031685622515,0.0,6.864181934250391,1.38
+RPPO,rppo__pi__safe__seed_0,mass_drop,1.7775833920351651,0.0,2.84711454266008,0.0
+RPPO,rppo__pi__safe__seed_0,mass_pickup,1.7601314737906548,0.0,3.4500165413263453,0.0
+RPPO,rppo__pi__safe__seed_0,motor_degrade,2.500558435285755,0.0,8.97916182854233,0.9000000000000004
+RPPO,rppo__pi__safe__seed_0,ood_combined,8.74976662705056,21.0,,
+RPPO,rppo__pi__safe__seed_0,ood_delay,4.822776143060086,66.0,,
+RPPO,rppo__pi__safe__seed_0,ood_dryden,2.8428400270917997,1.0,,
+RPPO,rppo__pi__safe__seed_0,ood_heavy,4.0696353018590505,1.0,,
+RPPO,rppo__pi__safe__seed_0,ood_light,5.16260248859058,6.0,,
+RPPO,rppo__pi__safe__seed_0,ood_noisy,3.64740717971871,0.0,,
+RPPO,rppo__pi__safe__seed_0,ood_slow_motor,3.28284742388082,1.0,,
+RPPO,rppo__pi__safe__seed_0,ood_strong_wind,11.347167517183525,10.0,,
+RPPO,rppo__pi__safe__seed_0,ood_weak_motor,4.297317012922855,18.0,,
+RPPO,rppo__pi__safe__seed_0,push,3.08007350727276,0.0,13.38424589747147,1.4800000000000004
+RPPO,rppo__pi__safe__seed_0,step_gust,2.49794453389567,0.0,5.176808971820855,0.5500000000000003
+RPPO,rppo__pi__safe__seed_0,test_id,3.1701920157978,0.5,,
+RPPO,rppo__pi__safe__seed_1,gust_pulse,1.729525071301985,0.0,6.3459464773796395,0.9800000000000004
+RPPO,rppo__pi__safe__seed_1,mass_drop,1.423815457187805,0.0,3.01101211316276,0.0
+RPPO,rppo__pi__safe__seed_1,mass_pickup,1.649584319264715,0.0,2.950129643149035,0.0
+RPPO,rppo__pi__safe__seed_1,motor_degrade,1.87981160166656,0.0,6.9190735779516395,0.7199999999999998
+RPPO,rppo__pi__safe__seed_1,ood_combined,11.50115169583072,24.0,,
+RPPO,rppo__pi__safe__seed_1,ood_delay,4.55913366030174,74.0,,
+RPPO,rppo__pi__safe__seed_1,ood_dryden,2.50921490872646,3.0,,
+RPPO,rppo__pi__safe__seed_1,ood_heavy,3.99663243143037,1.0,,
+RPPO,rppo__pi__safe__seed_1,ood_light,5.163975059646245,8.0,,
+RPPO,rppo__pi__safe__seed_1,ood_noisy,3.96270992715965,1.0,,
+RPPO,rppo__pi__safe__seed_1,ood_slow_motor,2.9629536673795798,15.0,,
+RPPO,rppo__pi__safe__seed_1,ood_strong_wind,16.09328038076206,11.0,,
+RPPO,rppo__pi__safe__seed_1,ood_weak_motor,4.07716572256196,21.0,,
+RPPO,rppo__pi__safe__seed_1,push,2.8463852360587705,0.0,12.90744041183374,1.1000000000000003
+RPPO,rppo__pi__safe__seed_1,step_gust,2.43418541186014,0.0,5.612676046797451,0.5800000000000001
+RPPO,rppo__pi__safe__seed_1,test_id,3.1617946220189594,2.0,,
+RPPO,rppo__pi__safe__seed_2,gust_pulse,1.8706948350493449,0.0,6.33163767757878,0.9400000000000004
+RPPO,rppo__pi__safe__seed_2,mass_drop,1.4550949443775152,0.0,3.8491840901739294,0.0
+RPPO,rppo__pi__safe__seed_2,mass_pickup,1.374913902734845,0.0,2.84907053728527,0.0
+RPPO,rppo__pi__safe__seed_2,motor_degrade,2.238893508977105,0.0,8.828940910028669,0.8500000000000001
+RPPO,rppo__pi__safe__seed_2,ood_combined,9.213134821920029,42.0,,
+RPPO,rppo__pi__safe__seed_2,ood_delay,4.03922231948136,71.0,,
+RPPO,rppo__pi__safe__seed_2,ood_dryden,2.73466181270384,6.0,,
+RPPO,rppo__pi__safe__seed_2,ood_heavy,3.7306311379045902,3.0,,
+RPPO,rppo__pi__safe__seed_2,ood_light,5.0653406502856795,22.0,,
+RPPO,rppo__pi__safe__seed_2,ood_noisy,3.323743771725235,8.0,,
+RPPO,rppo__pi__safe__seed_2,ood_slow_motor,2.86051399781361,28.000000000000004,,
+RPPO,rppo__pi__safe__seed_2,ood_strong_wind,12.304891061115585,30.0,,
+RPPO,rppo__pi__safe__seed_2,ood_weak_motor,3.8787320696730347,30.0,,
+RPPO,rppo__pi__safe__seed_2,push,2.944605733098825,0.0,13.569154923081845,1.12
+RPPO,rppo__pi__safe__seed_2,step_gust,2.95542009013555,0.0,5.8848372911116495,0.6799999999999997
+RPPO,rppo__pi__safe__seed_2,test_id,3.215426735182435,5.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_0,gust_pulse,1.5987271330093948,0.0,6.12084837432927,1.4800000000000004
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_0,mass_drop,0.9127051716667799,0.0,2.1665935872685997,0.0
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_0,mass_pickup,0.8801471513111101,0.0,2.498120903393635,0.0
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_0,motor_degrade,2.40340196039718,0.0,11.270694937278746,1.0600000000000005
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_0,ood_combined,5.2843141960191105,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_0,ood_delay,2.98997257001615,20.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_0,ood_dryden,2.26401997336875,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_0,ood_heavy,2.23810511061119,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_0,ood_light,3.267286738450355,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_0,ood_noisy,2.635410616918415,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_0,ood_slow_motor,2.75190585237492,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_0,ood_strong_wind,10.70993043406846,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_0,ood_weak_motor,2.76604380157284,1.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_0,push,2.342966623574115,0.0,12.74461770286624,0.7199999999999998
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_0,step_gust,2.114856239562645,0.0,5.578102238102605,0.6799999999999997
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_0,test_id,2.6732977871129453,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_1,gust_pulse,1.5666597226348202,0.0,5.987459896370615,1.4800000000000004
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_1,mass_drop,0.863820054952655,0.0,2.8127602289619498,0.0
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_1,mass_pickup,0.8775219293031249,0.0,2.1425431070166296,0.0
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_1,motor_degrade,2.144383857214225,0.0,9.906513793748895,0.9900000000000002
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_1,ood_combined,4.8418431420538,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_1,ood_delay,2.5212088152996652,30.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_1,ood_dryden,1.9234734444798702,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_1,ood_heavy,1.933053472181915,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_1,ood_light,3.0733678974039647,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_1,ood_noisy,2.611376540867425,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_1,ood_slow_motor,2.43582885558438,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_1,ood_strong_wind,8.06601599834683,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_1,ood_weak_motor,2.48439526220537,3.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_1,push,2.1738961353336452,0.0,12.366841675108626,0.6600000000000001
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_1,step_gust,1.749163647338815,0.0,5.265732741292335,0.6200000000000001
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_1,test_id,2.40841155406385,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_2,gust_pulse,1.9980031436789398,0.0,6.7132465882348,1.54
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_2,mass_drop,1.29751306752127,0.0,2.2447117080948598,0.0
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_2,mass_pickup,1.063014057012125,0.0,1.844722260434005,0.0
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_2,motor_degrade,2.442097896362375,0.0,11.12525616368749,1.0200000000000005
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_2,ood_combined,4.93431081688009,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_2,ood_delay,3.48093539704806,19.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_2,ood_dryden,2.5271887992090654,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_2,ood_heavy,2.8023776225217447,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_2,ood_light,4.4808040893326195,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_2,ood_noisy,3.09605939676931,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_2,ood_slow_motor,3.0943174222846,1.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_2,ood_strong_wind,9.63896564824144,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_2,ood_weak_motor,2.980185691641185,0.0,,
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_2,push,2.57072457548492,0.0,12.874394921160881,0.7200000000000002
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_2,step_gust,2.4493597132180254,0.0,5.402212820226921,0.6600000000000001
+RPPO (рецепт),rppo__pi__safe__asym__hp_epochs5__hp_lstm128__seed_2,test_id,2.989840517792465,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_0,gust_pulse,1.527652253216255,0.0,5.498530803991895,0.8200000000000003
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_0,mass_drop,1.054020901355205,0.0,1.9112148358541798,0.0
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_0,mass_pickup,1.013605787095315,0.0,1.857534137932705,0.0
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_0,motor_degrade,1.569066485989105,0.0,7.447843765661699,0.79
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_0,ood_combined,6.1960889788441404,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_0,ood_delay,4.65041574233926,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_0,ood_dryden,2.214873211237905,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_0,ood_heavy,2.91521695598936,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_0,ood_light,4.4303639342783,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_0,ood_noisy,2.91831052429919,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_0,ood_slow_motor,2.5030349903710203,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_0,ood_strong_wind,7.831251443091181,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_0,ood_weak_motor,2.73445013734268,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_0,push,2.3454419939089153,0.0,11.62981445000359,1.0
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_0,step_gust,2.1825509565287,0.0,4.812142799412951,0.0
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_0,test_id,2.37002609458888,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_1,gust_pulse,1.919004000797455,0.0,6.1935819265153205,0.8600000000000003
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_1,mass_drop,1.410852481984725,0.0,2.2358150638639147,0.0
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_1,mass_pickup,1.129053027653265,0.0,1.835383052782135,0.0
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_1,motor_degrade,1.6966398862944099,0.0,5.987636003427825,0.7800000000000002
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_1,ood_combined,6.13125937024126,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_1,ood_delay,5.5160174837012255,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_1,ood_dryden,2.47521857423303,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_1,ood_heavy,3.013837502655565,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_1,ood_light,4.996317945802555,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_1,ood_noisy,3.116354349971295,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_1,ood_slow_motor,2.599040582836475,4.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_1,ood_strong_wind,7.24208391238584,1.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_1,ood_weak_motor,2.89032457152976,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_1,push,2.567010319669505,0.0,12.122702116446115,1.04
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_1,step_gust,2.204858759777115,0.0,4.960437859952685,0.0
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_1,test_id,2.6247648861980903,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_2,gust_pulse,1.591893535357035,0.0,6.06096929340927,0.9000000000000004
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_2,mass_drop,1.192611726232105,0.0,1.9333949581061347,0.0
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_2,mass_pickup,1.594513416453735,0.0,2.658326296595305,0.0
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_2,motor_degrade,1.76942702785615,0.0,7.755247507848625,0.75
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_2,ood_combined,7.18502232186847,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_2,ood_delay,5.256729557752355,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_2,ood_dryden,2.370019434880045,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_2,ood_heavy,3.68929302814165,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_2,ood_light,4.011065258243035,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_2,ood_noisy,3.2015092011218353,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_2,ood_slow_motor,2.67800682987708,2.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_2,ood_strong_wind,9.441850028293144,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_2,ood_weak_motor,3.529958068287625,0.0,,
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_2,push,2.307256424416915,0.0,12.457627784582256,0.9800000000000004
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_2,step_gust,2.1007444253738248,0.0,5.210553355559155,0.5600000000000005
+RPPO (attitude),rppo__pi__safe__att__hp_epochs5__seed_2,test_id,2.74642562939751,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,gust_pulse,1.519540167102765,0.0,6.069967793386165,0.92
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,mass_drop,0.90323416342402,0.0,2.254763690141125,0.0
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,mass_pickup,0.988828337102705,0.0,2.498711919144345,0.0
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,motor_degrade,1.941442541638275,0.0,9.296034498508309,0.9300000000000002
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,ood_combined,4.3107977104479795,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,ood_delay,3.58124116194398,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,ood_dryden,1.9204506456699904,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,ood_heavy,2.259520094639465,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,ood_light,3.078177805775105,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,ood_noisy,2.778686577068655,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,ood_slow_motor,2.60924420762536,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,ood_strong_wind,9.79863224167925,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,ood_weak_motor,2.61537224842538,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,push,2.43005958967668,0.0,12.190532078741704,0.7800000000000002
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,step_gust,1.51147948508547,0.0,5.3944336741945005,0.6399999999999997
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,test_id,2.4448190183792002,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,gust_pulse,1.6812559866665597,0.0,5.991883084857655,1.42
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,mass_drop,1.0526532060717801,0.0,2.73213740217789,0.0
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,mass_pickup,0.978608684830095,0.0,2.96607086221762,0.0
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,motor_degrade,2.071972893624225,0.0,9.187399761984056,1.0
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,ood_combined,5.68593234533557,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,ood_delay,3.150683018810925,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,ood_dryden,1.9812522562901451,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,ood_heavy,2.246037422898255,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,ood_light,3.0218804320706805,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,ood_noisy,2.537736108949785,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,ood_slow_motor,2.4390117902552704,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,ood_strong_wind,9.03475871704222,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,ood_weak_motor,2.5985250526141703,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,push,2.334945730419155,0.0,12.219310211241922,0.8300000000000001
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,step_gust,1.914957409431645,0.0,5.3913043504640505,0.6399999999999997
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,test_id,2.43890595654893,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,gust_pulse,1.880913745926105,0.0,5.7715765670781005,1.15
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,mass_drop,1.621736382704525,0.0,3.9215035600444996,0.0
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,mass_pickup,1.7480280670265549,0.0,2.651005840746375,0.0
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,motor_degrade,2.28334261557545,0.0,8.98324661407549,0.8700000000000001
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,ood_combined,4.46877941359165,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,ood_delay,3.46850795077878,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,ood_dryden,2.36088023902337,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,ood_heavy,2.222215205770865,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,ood_light,3.029471378666425,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,ood_noisy,2.846771602757415,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,ood_slow_motor,2.7799582586522953,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,ood_strong_wind,9.229502499169358,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,ood_weak_motor,2.64489519911065,0.0,,
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,push,2.41015457069064,0.0,12.096900126904691,0.6600000000000001
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,step_gust,2.258851831568895,0.0,5.166867489384015,0.5800000000000001
+"RPPO (attitude, рецепт)",rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,test_id,2.743502422583895,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,gust_pulse,1.486933771383705,0.0,5.447159144803085,0.8399999999999999
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,mass_drop,1.6229340948465898,0.0,2.441105994410075,0.0
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,mass_pickup,1.72108067074441,0.0,4.008111867759235,0.0
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,motor_degrade,1.804070696298775,0.0,7.38302752358385,0.7999999999999998
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,ood_combined,4.38173901167475,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,ood_delay,3.57888182889087,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,ood_dryden,2.1355249643313297,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,ood_heavy,2.64226891991335,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,ood_light,2.6804592291393896,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,ood_noisy,2.7506547569378847,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,ood_slow_motor,2.59531918152907,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,ood_strong_wind,6.863909388141545,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,ood_weak_motor,3.051221780316835,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,push,2.246823822702795,0.0,11.546933739903666,0.6699999999999999
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,step_gust,1.50046053167027,0.0,5.00129659228031,0.27
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_0,test_id,2.55499902467299,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,gust_pulse,1.37409117590743,0.0,5.916902364130385,0.8600000000000003
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,mass_drop,1.419516258305075,0.0,2.953888465275745,0.0
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,mass_pickup,1.27071973334162,0.0,2.93890619908357,0.0
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,motor_degrade,1.44673299811041,0.0,6.304178320831235,0.6999999999999997
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,ood_combined,4.95788153817059,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,ood_delay,3.6429781633351794,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,ood_dryden,2.12797537735681,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,ood_heavy,2.4559992678087403,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,ood_light,2.8840900538599,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,ood_noisy,2.655315592601255,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,ood_slow_motor,2.6851197326396,1.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,ood_strong_wind,7.428947375838099,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,ood_weak_motor,3.07043310687106,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,push,2.20929591952917,0.0,12.566544633016624,0.6600000000000001
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,step_gust,1.77947094994167,0.0,5.547843724028575,0.7199999999999998
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_1,test_id,2.6727840147140602,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,gust_pulse,1.6706785757350149,0.0,6.16450604564771,0.9400000000000004
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,mass_drop,1.501035336117275,0.0,2.3249261984933,0.0
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,mass_pickup,1.6118770608359152,0.0,3.664926108108525,0.0
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,motor_degrade,1.8702642209436098,0.0,7.815462287821259,0.8000000000000003
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,ood_combined,4.4663312103553805,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,ood_delay,3.70273553117466,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,ood_dryden,2.23682319601625,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,ood_heavy,2.4761739345916847,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,ood_light,3.19793218381086,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,ood_noisy,2.94165700934501,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,ood_slow_motor,2.719978144765885,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,ood_strong_wind,7.329291613873864,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,ood_weak_motor,2.9900916446709247,0.0,,
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,push,2.507350904098865,0.0,13.25327899690055,0.69
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,step_gust,1.6737846502193752,0.0,5.653099790707175,0.6999999999999997
+"RPPO+∫ (attitude, рецепт)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__seed_2,test_id,2.6093971858094154,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_0,gust_pulse,1.427336554091595,0.0,6.78529048847385,0.9400000000000004
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_0,mass_drop,1.21554575748712,0.0,2.53403692511474,0.0
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_0,mass_pickup,1.2310861378016398,0.0,3.13383277486536,0.0
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_0,motor_degrade,1.562285329926465,0.0,6.94899318147808,0.8400000000000003
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_0,ood_combined,5.36397336251591,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_0,ood_delay,5.2448378350926195,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_0,ood_dryden,2.1481168424425245,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_0,ood_heavy,2.39144922514919,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_0,ood_light,3.10352069829912,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_0,ood_noisy,2.671892011145305,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_0,ood_slow_motor,3.362829764170805,12.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_0,ood_strong_wind,9.321735505236589,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_0,ood_weak_motor,3.61865963059702,3.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_0,push,3.024644960814805,0.0,15.810694082567794,1.2199999999999998
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_0,step_gust,1.9797768462831749,0.0,6.27506691453108,0.8200000000000003
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_0,test_id,2.57006060060255,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_1,gust_pulse,1.37390593226618,0.0,6.623656086676455,0.92
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_1,mass_drop,1.11975651508589,0.0,2.4423448824063247,0.0
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_1,mass_pickup,1.156974587946065,0.0,3.05042239484317,0.0
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_1,motor_degrade,1.20569249583241,0.0,6.16278287725497,0.6399999999999997
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_1,ood_combined,5.885828224386355,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_1,ood_delay,5.937525426427375,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_1,ood_dryden,2.0181788588305096,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_1,ood_heavy,2.2761193764042895,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_1,ood_light,3.2823177199708455,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_1,ood_noisy,2.75114031330483,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_1,ood_slow_motor,2.81562577499715,9.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_1,ood_strong_wind,8.459670087114752,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_1,ood_weak_motor,3.88383022685149,3.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_1,push,2.8860336608898898,0.0,14.939495869345908,1.1999999999999997
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_1,step_gust,1.887257567094865,0.0,6.1036614015841355,0.75
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_1,test_id,2.59871722614767,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_2,gust_pulse,1.19842381659799,0.0,5.8788193207458495,0.8600000000000003
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_2,mass_drop,1.2439112296918748,0.0,2.87857012641702,0.0
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_2,mass_pickup,1.255838399534575,0.0,3.4220078057009453,0.0
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_2,motor_degrade,1.156979013187425,0.0,5.37465483260718,0.6000000000000005
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_2,ood_combined,5.03894548534613,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_2,ood_delay,4.438176820513375,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_2,ood_dryden,1.9389063059628902,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_2,ood_heavy,2.04225999563102,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_2,ood_light,2.8126900956611847,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_2,ood_noisy,2.438371362923895,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_2,ood_slow_motor,2.49788244892059,9.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_2,ood_strong_wind,7.451783565714446,0.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_2,ood_weak_motor,3.01503432364089,1.0,,
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_2,push,2.50756045299899,0.0,14.25906628190557,0.9200000000000004
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_2,step_gust,1.6593660997031503,0.0,5.181614556428775,0.5900000000000003
+"MLP+∫ (attitude, ∫ ±2)",ppo_mlp_integral__pi__safe__att__int2__seed_2,test_id,2.30095360357374,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_0,gust_pulse,1.491508201779535,0.0,5.594625566793065,0.8200000000000003
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_0,mass_drop,1.2755444608005901,0.0,3.223186882291265,0.0
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_0,mass_pickup,1.200872241889925,0.0,2.774788572223215,0.0
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_0,motor_degrade,1.7007076944250097,0.0,7.451921509525,0.7999999999999998
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_0,ood_combined,3.9293735455109795,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_0,ood_delay,2.956832998915215,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_0,ood_dryden,1.795874545262165,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_0,ood_heavy,1.8493743409108,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_0,ood_light,2.90038571472633,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_0,ood_noisy,2.483774114346745,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_0,ood_slow_motor,2.25339769901161,3.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_0,ood_strong_wind,7.12898304799652,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_0,ood_weak_motor,2.56129148414459,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_0,push,2.2289316285335348,0.0,12.17035563342719,0.6600000000000001
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_0,step_gust,1.4106235514147198,0.0,5.0196263352865,0.5100000000000002
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_0,test_id,2.22882942410164,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_1,gust_pulse,1.3775652657384099,0.0,5.76627876541621,0.8600000000000003
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_1,mass_drop,1.122178438677375,0.0,2.80634611163467,0.0
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_1,mass_pickup,1.1593908776426,0.0,2.71267574623082,0.0
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_1,motor_degrade,1.6765453898807352,0.0,7.482138647288106,0.8399999999999999
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_1,ood_combined,4.4180061140542195,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_1,ood_delay,3.070038374238315,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_1,ood_dryden,1.86516078954561,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_1,ood_heavy,1.9803893752655148,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_1,ood_light,3.01303859871777,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_1,ood_noisy,2.59414598984694,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_1,ood_slow_motor,2.489491735932555,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_1,ood_strong_wind,7.29399975300931,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_1,ood_weak_motor,2.5179503255602302,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_1,push,2.217506302000615,0.0,12.567238773736605,0.6799999999999997
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_1,step_gust,1.422060138779085,0.0,5.218854344813215,0.6299999999999999
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_1,test_id,2.31827283696238,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_2,gust_pulse,1.8282300057083951,0.0,6.40616693578257,1.4700000000000002
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_2,mass_drop,1.472253344437735,0.0,3.08305792436749,0.0
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_2,mass_pickup,1.450503883959515,0.0,2.7211133129159597,0.0
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_2,motor_degrade,2.404757822435435,0.0,9.972513128397706,1.0000000000000004
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_2,ood_combined,4.603023043207149,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_2,ood_delay,3.769126328617806,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_2,ood_dryden,2.24669310097045,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_2,ood_heavy,2.6212851075576498,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_2,ood_light,3.501843410021365,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_2,ood_noisy,3.0165652385358452,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_2,ood_slow_motor,2.84425337798048,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_2,ood_strong_wind,9.837896362379944,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_2,ood_weak_motor,3.4142098142687103,0.0,,
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_2,push,2.529861484224325,0.0,12.822797342617504,0.75
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_2,step_gust,1.67409476909839,0.0,5.720780248098201,0.7400000000000002
+"RPPO+∫ (attitude, рецепт, ∫ ±2)",rppo_integral__pi__safe__att__asym__hp_epochs5__hp_lstm128__int2__seed_2,test_id,2.7669391523565854,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_0,gust_pulse,1.8495553261070101,0.0,6.83914328431822,0.96
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_0,mass_drop,2.80326983101885,0.0,5.61396353042098,2.1100000000000003
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_0,mass_pickup,2.6981001505982696,0.0,5.59933110504704,2.06
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_0,motor_degrade,2.13839419628349,0.0,7.221137239170695,0.8399999999999999
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_0,ood_combined,7.80806958221535,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_0,ood_delay,6.084883371066755,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_0,ood_dryden,3.77597202603737,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_0,ood_heavy,4.344073696386725,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_0,ood_light,5.39009618113602,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_0,ood_noisy,4.294925717470845,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_0,ood_slow_motor,4.34047622696574,7.000000000000001,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_0,ood_strong_wind,15.109152495660839,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_0,ood_weak_motor,5.38711976991999,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_0,push,3.1437335894795804,0.0,15.061199045775819,0.7999999999999998
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_0,step_gust,2.89468497922893,0.0,6.441911530644005,2.25
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_0,test_id,4.304959368012265,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_1,gust_pulse,1.5959518615300101,0.0,6.674379473897391,0.92
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_1,mass_drop,2.194587619547765,0.0,5.55322063514261,1.6500000000000004
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_1,mass_pickup,2.267456554747925,0.0,5.603040721383016,1.77
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_1,motor_degrade,1.8876933843720647,0.0,7.04038111758825,0.8200000000000003
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_1,ood_combined,7.263343553744725,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_1,ood_delay,5.78022918382635,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_1,ood_dryden,3.2632162777291,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_1,ood_heavy,3.7750162186563005,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_1,ood_light,4.977926276036309,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_1,ood_noisy,4.06926180154788,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_1,ood_slow_motor,4.1674837610471,2.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_1,ood_strong_wind,13.927326656898787,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_1,ood_weak_motor,5.421163348387835,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_1,push,2.8994171999149247,0.0,14.939810114320151,0.7999999999999998
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_1,step_gust,2.42278377369522,0.0,6.2070512400631745,1.71
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_1,test_id,3.8577460667866355,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_2,gust_pulse,1.5820021914643798,0.0,6.404876085958075,0.92
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_2,mass_drop,2.414365738971135,0.0,4.9695915550066205,0.0
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_2,mass_pickup,2.083893106254275,0.0,5.0915539244913255,1.0800000000000005
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_2,motor_degrade,1.7564287117886799,0.0,6.192230974842945,0.7199999999999998
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_2,ood_combined,8.791253081976935,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_2,ood_delay,4.904599497525005,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_2,ood_dryden,3.520823839290495,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_2,ood_heavy,4.21823382432571,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_2,ood_light,4.80124734885452,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_2,ood_noisy,4.111919973162645,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_2,ood_slow_motor,4.49261644484145,8.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_2,ood_strong_wind,15.964215354062919,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_2,ood_weak_motor,5.023303722228601,0.0,,
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_2,push,2.931867850073195,0.0,14.686122115730626,0.7800000000000002
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_2,step_gust,2.579045357212885,0.0,6.02234443990863,1.96
+"MLP+∫ (attitude, 5 эпох, асим.)",ppo_mlp_integral__pi__safe__att__asym__hp_epochs5__seed_2,test_id,4.20266469117185,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_0,gust_pulse,1.38182474846034,0.0,6.090128505678704,0.8900000000000001
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_0,mass_drop,2.27864594667871,0.0,5.160847387317715,1.5400000000000005
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_0,mass_pickup,2.2229247600028748,0.0,5.28890902244727,1.6800000000000002
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_0,motor_degrade,1.45904284019632,0.0,5.5256822966529455,0.6499999999999999
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_0,ood_combined,7.458529046959235,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_0,ood_delay,5.048121948542924,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_0,ood_dryden,3.1970754772969094,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_0,ood_heavy,3.6022909529038403,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_0,ood_light,4.808702666289845,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_0,ood_noisy,3.7610769038254097,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_0,ood_slow_motor,4.224841209411285,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_0,ood_strong_wind,13.42876569317419,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_0,ood_weak_motor,4.8366621373529,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_0,push,2.67580538846164,0.0,14.238976510484092,0.7400000000000002
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_0,step_gust,2.50937095436549,0.0,5.981448714025325,2.140000000000001
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_0,test_id,3.74776240396255,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_1,gust_pulse,1.238568879879635,0.0,5.640791038442146,0.8500000000000001
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_1,mass_drop,1.8182126510955596,0.0,4.279797979817,0.0
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_1,mass_pickup,1.7481516749796748,0.0,4.411726572867019,0.0
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_1,motor_degrade,1.3259028009416098,0.0,5.42232416192698,0.6100000000000003
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_1,ood_combined,5.93598134341222,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_1,ood_delay,4.46930910326852,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_1,ood_dryden,2.65576240776939,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_1,ood_heavy,2.81872878946322,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_1,ood_light,3.706053031082015,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_1,ood_noisy,3.1833415858990204,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_1,ood_slow_motor,3.2915389626440903,4.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_1,ood_strong_wind,8.365418213307816,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_1,ood_weak_motor,3.953587599507085,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_1,push,2.48551013259567,0.0,13.547263427547584,0.7000000000000002
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_1,step_gust,1.928540005892845,0.0,5.203932647773485,1.21
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_1,test_id,3.08741793158268,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_2,gust_pulse,1.1733058530950051,0.0,5.4301174231330105,0.8200000000000003
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_2,mass_drop,1.894180336900895,0.0,4.192820456852325,0.0
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_2,mass_pickup,1.7685827800436447,0.0,4.448490280371326,0.0
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_2,motor_degrade,1.249733210417435,0.0,5.165615405768261,0.5700000000000003
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_2,ood_combined,5.71084224445866,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_2,ood_delay,4.690508557276179,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_2,ood_dryden,2.5601688717243603,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_2,ood_heavy,2.862323680711595,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_2,ood_light,3.5903646722706,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_2,ood_noisy,3.0773477162876,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_2,ood_slow_motor,3.0768394103185748,6.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_2,ood_strong_wind,9.10476011189498,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_2,ood_weak_motor,3.7356943777783242,0.0,,
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_2,push,2.347511738091215,0.0,13.265049713500549,0.6799999999999997
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_2,step_gust,1.94819202360518,0.0,5.017347851139635,0.5200000000000005
+"MLP+∫ (attitude, 5 эпох)",ppo_mlp_integral__pi__safe__att__hp_epochs5__seed_2,test_id,2.99252977051713,0.0,,

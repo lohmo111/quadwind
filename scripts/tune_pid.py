@@ -49,9 +49,11 @@ def main() -> None:
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--out", default="configs/pid_tuned.json")
     ap.add_argument("--rate-ki", type=float, nargs=3, default=None, help="I-член внутреннего контура (PI)")
+    ap.add_argument("--attitude", action="store_true", help="PID выдаёт углы (режим attitude)")
     args = ap.parse_args()
 
-    cfg = EnvConfig(rate_ki=tuple(args.rate_ki)) if args.rate_ki else EnvConfig()
+    cfg = EnvConfig(rate_ki=tuple(args.rate_ki) if args.rate_ki else (0.0, 0.0, 0.0),
+                    action_mode="attitude" if args.attitude else "ctbr")
     conds, rng = make_suite(args.suite), np.random.default_rng(args.seed)
     t0 = time.perf_counter()
     best = PIDGains()
