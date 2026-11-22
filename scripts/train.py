@@ -26,7 +26,7 @@ from quadwind.training import (TrainingMonitor, ValidationCallback, build_space,
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", required=True)
+    ap.add_argument("--config", default=str(ROOT / "configs" / "rppo_hover.yaml"))
     ap.add_argument("--overlay", action="append", default=[], help="оверлей варианта среды (можно несколько)")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--exp", default="main", help="имя серии экспериментов (папка в runs/)")
@@ -66,10 +66,12 @@ def main() -> None:
     if env.norm_obs:
         ObsNormalizer.from_vecnormalize(env).save(run_dir / "final_obs_norm.npz")
     best = callbacks[1].best
+    actual = model.num_timesteps
     save_run_meta(run_dir, cfg, {"seed": args.seed, "status": "done", "train_seconds": round(elapsed, 1),
-                                 "steps_per_second": round(total / elapsed, 1), "best_val_rmse_capped": best})
-    print(f"[{cfg['name']} seed {args.seed}] {total:,} steps in {elapsed / 60:.1f} min "
-          f"({total / elapsed:,.0f} steps/s); best val rmse_capped = {best:.4f}; -> {run_dir}")
+                                 "actual_timesteps": actual, "steps_per_second": round(actual / elapsed, 1),
+                                 "best_val_rmse_capped": best})
+    print(f"[{cfg['name']} seed {args.seed}] {actual:,} steps in {elapsed / 60:.1f} min "
+          f"({actual / elapsed:,.0f} steps/s); best val rmse_capped = {best:.4f}; -> {run_dir}")
 
 
 if __name__ == "__main__":

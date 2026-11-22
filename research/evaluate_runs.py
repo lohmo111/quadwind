@@ -81,7 +81,7 @@ def main():
                 rows.append(summarize(f"{lab}_{loop}", episodes(f"{lab}PI_on_{loop}", PIDPolicy(ec, gg), ec)))
     for run in sorted({p for pat in args.runs for p in glob.glob(pat)}):
         run = Path(run)
-        if not (run / f"{args.which}_model.zip").exists() or not (run / "final_model.zip").exists():
+        if not (run / f"{args.which}_model.zip").is_file():
             continue
         name = f"{run.parent.name}/{run.name}"
         model, norm, cfg = load_model(run, args.which)

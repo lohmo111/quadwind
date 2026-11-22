@@ -1,9 +1,32 @@
 """Конфиги: базовый + метод + оверлеи вариантов; переопределения пространства условий; val варианта."""
 import numpy as np
 import pytest
+import yaml
+from pathlib import Path
 
 from quadwind.conditions import TRAIN_SPACE, U, make_suite, override_space
-from quadwind.training import build_space, load_config
+from quadwind.training import _schedule, build_space, load_config, load_model
+
+
+def test_release_recipe_matches_shipped_checkpoints():
+    recipe = load_config("configs/rppo_hover.yaml")
+    for seed in range(3):
+        folder = Path("runs/e7/rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128") / f"seed_{seed}"
+        saved = yaml.safe_load((folder / "config.yaml").read_text(encoding="utf-8"))
+        for key in ("name", "variants"):
+            saved.pop(key)
+        assert saved == {k: v for k, v in recipe.items() if k != "name"}
+
+
+def test_normalized_checkpoint_requires_statistics(tmp_path):
+    (tmp_path / "config.yaml").write_text("algo: rppo\nnormalize: {obs: true}\n", encoding="utf-8")
+    with pytest.raises(FileNotFoundError, match="best_obs_norm"):
+        load_model(tmp_path)
+
+
+def test_linear_learning_rate_reaches_zero_on_rollout_overshoot():
+    lr = _schedule(0.0003, "linear")
+    assert lr(1) == 0.0003 and lr(-0.002) == 0
 
 
 def test_overlay_merges_and_names_run():

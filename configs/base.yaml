@@ -11,7 +11,7 @@ curriculum:
 eval:
   freq: 250000               # шагов между оценками на val
   suite: val
-  n: null                    # null = весь набор (64 эпизода)
+  n: null                    # null = весь набор (256 эпизодов val)
 normalize: {obs: true, reward: true, clip_obs: 10.0}
 lr_schedule: linear
 algo_kwargs:

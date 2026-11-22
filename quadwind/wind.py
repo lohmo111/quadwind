@@ -213,6 +213,8 @@ class LiveWind:
     def reseed(self, seed: int) -> None:
         self.rng = np.random.default_rng(seed)
         self._turb = np.zeros(3)
+        self.t = 0.0
+        self._gusts.clear()
 
     def base(self) -> np.ndarray:
         return wind_from(self.from_deg, self.speed, self.vertical)

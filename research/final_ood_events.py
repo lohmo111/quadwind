@@ -47,7 +47,7 @@ def policies():
                **json.load(open("configs/pid_tuned_pi_att.json")))), EnvConfig(rate_ki=PI, action_mode="attitude")))]
     for group, name in GROUPS.items():
         for run in sorted(glob.glob(f"runs/e7/{name}/seed_*")):
-            if Path(run, "final_model.zip").exists():
+            if Path(run, "best_model.zip").is_file():
                 def make(run=run):
                     m, n, c = load_model(Path(run), "best")
                     return SB3Policy(m, n), EnvConfig.from_dict(c.get("env"))

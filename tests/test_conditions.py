@@ -57,6 +57,16 @@ def test_episode_seeds_are_unique_across_suites():
     assert len(seeds) == len(set(seeds))
 
 
+@pytest.mark.parametrize("suite", ["test_id", "safety", "wind_sweep", "wind_compass", "ood_heavy", "mass_pickup"])
+def test_final_suite_is_disjoint_and_repeatable(suite):
+    historical = make_suite(suite, n=3)
+    final = make_suite(suite, n=3, namespace="final")
+    assert {c.seed for c in final}.isdisjoint(c.seed for c in historical)
+    assert final == make_suite(suite, n=3, namespace="final")
+    if suite == "test_id":
+        assert final[0].mass_ratio != historical[0].mass_ratio
+
+
 def test_val_and_test_differ():
     val = {c.to_record()["seed"] for c in make_suite("val")}
     test = {c.to_record()["seed"] for c in make_suite("test_id")}

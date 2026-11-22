@@ -278,29 +278,29 @@ def suite_names() -> list[str]:
     return list(SUITE_SIZES) + ["wind_sweep", "wind_compass"]
 
 
-def _suite_rng(name: str) -> tuple[np.random.Generator, int]:
-    key = zlib.crc32(name.encode())   # стабильный хэш (встроенный hash() меняется между процессами)
-    return np.random.default_rng([SUITE_NAMESPACE, key]), key
-
-
-def make_suite(name: str, n: int | None = None, space: ConditionSpace | None = None) -> list[EpisodeCondition]:
+def make_suite(name: str, n: int | None = None, space: ConditionSpace | None = None,
+               *, namespace: str = "research") -> list[EpisodeCondition]:
     """Детерминированный список условий набора `name`.
 
     `space` заменяет TRAIN_SPACE для наборов val / test_id / probe (варианты среды в экспериментах):
     сиды те же, распределение — варианта.
     """
-    rng, key = _suite_rng(name)
+    # Keep historical splits byte-for-byte. The final split changes both the
+    # sampled episode conditions and the wind/noise streams inside each episode.
+    split = {"research": SUITE_NAMESPACE, "final": 0xF1A1}[namespace]
+    key = zlib.crc32(name.encode())
+    rng = np.random.default_rng([split, key])
     if name == "wind_sweep":
         conds = []
         for i, (speed, direction) in enumerate((s, d) for s in WIND_SWEEP_SPEEDS for d in WIND_SWEEP_DIRS):
-            c = NOMINAL_SPACE.sample(rng, seed=(SUITE_NAMESPACE, key, i))
+            c = NOMINAL_SPACE.sample(rng, seed=(split, key, i))
             c.wind = replace(c.wind, speed=speed, direction=direction)
             conds.append(c)
         return conds[:n] if n else conds
     if name == "wind_compass":
         conds = []
         for i, from_deg in enumerate(COMPASS.values()):
-            c = NOMINAL_SPACE.sample(rng, seed=(SUITE_NAMESPACE, key, i))
+            c = NOMINAL_SPACE.sample(rng, seed=(split, key, i))
             c.wind = replace(c.wind, speed=WIND_COMPASS_SPEED, direction=from_deg_to_direction(from_deg))
             conds.append(c)
         return conds[:n] if n else conds
@@ -313,7 +313,7 @@ def make_suite(name: str, n: int | None = None, space: ConditionSpace | None = N
     else:
         raise KeyError(f"unknown suite {name!r}; known: {suite_names()}")
     size = n if n is not None else SUITE_SIZES[name]
-    return [space.sample(rng, difficulty=1.0, seed=(SUITE_NAMESPACE, key, i)) for i in range(size)]
+    return [space.sample(rng, difficulty=1.0, seed=(split, key, i)) for i in range(size)]
 
 
 def condition_to_dict(c: EpisodeCondition) -> dict:

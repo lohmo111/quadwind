@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import argparse
 import glob
-import json
 import sys
 from pathlib import Path
 
@@ -22,11 +21,10 @@ import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 
 from quadwind.conditions import OOD_SPACES, SCENARIO_SPACES, make_suite, suite_names  # noqa: E402
-from quadwind.control import PIDGains  # noqa: E402
 from quadwind.env import EnvConfig  # noqa: E402
 from quadwind.evaluation import evaluate_in_chunks  # noqa: E402
 from quadwind.metrics import episode_metrics  # noqa: E402
-from quadwind.policies import PIDPolicy, SB3Policy  # noqa: E402
+from quadwind.policies import PIDPolicy, SB3Policy, baseline_env_config, tuned_pid_gains  # noqa: E402
 from quadwind.stats import summarize  # noqa: E402
 from quadwind.training import load_model  # noqa: E402
 
@@ -44,14 +42,19 @@ def expand_suites(names: list[str]) -> list[str]:
     return list(dict.fromkeys(out))
 
 
-def evaluate_policy(policy, env_cfg: EnvConfig, suites: list[str], tags: dict) -> pd.DataFrame:
+def evaluate_policy(policy, env_cfg: EnvConfig, suites: list[str], tags: dict,
+                    namespace: str = "research") -> pd.DataFrame:
     frames = []
     for suite in suites:
-        for ro in evaluate_in_chunks(policy, env_cfg, make_suite(suite)):
+        offset = 0
+        for ro in evaluate_in_chunks(policy, env_cfg, make_suite(suite, namespace=namespace)):
             df = episode_metrics(ro, max_dist=env_cfg.max_dist)
+            df["episode"] += offset
+            offset += len(df)
             df.insert(0, "suite", suite)
             frames.append(df)
     df = pd.concat(frames, ignore_index=True)
+    df["namespace"] = namespace
     for k, v in reversed(list(tags.items())):
         df.insert(0, k, v)
     return df
@@ -61,6 +64,8 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--runs", nargs="*", default=[], help="папки запусков или glob-шаблоны")
     ap.add_argument("--suites", nargs="+", default=["val"])
+    ap.add_argument("--namespace", choices=["research", "final"], default="research",
+                    help="independent episode seeds for the final evaluation")
     ap.add_argument("--which", default="best", choices=["best", "final"])
     ap.add_argument("--baselines", nargs="*", default=[], choices=["pid", "pd"])
     ap.add_argument("--pid-gains", default=None, help="JSON с коэффициентами PID (из tune_pid.py)")
@@ -69,26 +74,47 @@ def main() -> None:
 
     suites = expand_suites(args.suites)
     frames = []
-    gains = PIDGains(**json.loads(Path(args.pid_gains).read_text())) if args.pid_gains else PIDGains()
-    for name in args.baselines:
-        g = gains if name == "pid" else gains.without_integrators()
-        env_cfg = EnvConfig()
-        frames.append(evaluate_policy(PIDPolicy(env_cfg, g), env_cfg, suites,
-                                      {"method": name, "seed_train": 0, "run": name}))
-        print(f"evaluated {name}")
-
-    run_dirs = sorted({Path(p) for pattern in args.runs for p in glob.glob(pattern)})
-    for run_dir in run_dirs:
-        if not (run_dir / f"{args.which}_model.zip").exists():
-            print(f"skip {run_dir}: no {args.which}_model.zip")
-            continue
+    baseline_configs = []
+    run_dirs = set()
+    for pattern in args.runs:
+        matches = glob.glob(pattern)
+        if not matches:
+            ap.error(f"no runs match {pattern!r}")
+        for p in matches:
+            run = Path(p)
+            if not (run / f"{args.which}_model.zip").is_file():
+                if not glob.has_magic(pattern):
+                    ap.error(f"{run}: missing {args.which}_model.zip")
+                print(f"skip {run}: missing {args.which}_model.zip")
+                continue
+            run_dirs.add(run)
+    if args.runs and not run_dirs:
+        ap.error("no loadable checkpoints in the requested runs")
+    if run_dirs:
+        import torch
+        torch.set_num_threads(2)
+    for run_dir in sorted(run_dirs):
         model, normalizer, cfg = load_model(run_dir, args.which)
         env_cfg = EnvConfig.from_dict(cfg.get("env"))
+        matched_cfg = baseline_env_config(env_cfg)
+        if matched_cfg not in baseline_configs:
+            baseline_configs.append(matched_cfg)
+        group = baseline_configs.index(matched_cfg) + 1
         seed = int(run_dir.name.split("_")[-1]) if run_dir.name.startswith("seed_") else 0
         frames.append(evaluate_policy(SB3Policy(model, normalizer), env_cfg, suites,
-                                      {"method": cfg["name"], "seed_train": seed, "run": str(run_dir)}))
+                                      {"method": cfg["name"], "seed_train": seed, "run": str(run_dir),
+                                       "environment_group": group}, namespace=args.namespace))
         print(f"evaluated {run_dir}")
 
+    for group, env_cfg in enumerate(baseline_configs or [EnvConfig()], 1):
+        for name in args.baselines:
+            gains = tuned_pid_gains(env_cfg, args.pid_gains)
+            g = gains.without_integrators() if name == "pd" else gains
+            label = name if len(baseline_configs) <= 1 else f"{name}__group{group}_{env_cfg.action_mode}"
+            frames.append(evaluate_policy(PIDPolicy(env_cfg, g), env_cfg, suites,
+                                          {"method": label, "seed_train": 0, "run": label,
+                                           "environment_group": group}, namespace=args.namespace))
+            print(f"evaluated {label}")
     if not frames:
         raise SystemExit("nothing to evaluate")
     df = pd.concat(frames, ignore_index=True)
