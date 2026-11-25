@@ -3,8 +3,8 @@
 Нижние контуры (регулятор угловых скоростей, миксер) реализованы в `kernels.py` и работают
 на частоте физики внутри среды. Они знают только номинальные параметры дрона:
 ослабленный мотор, другую массу и смещение центра масс должен компенсировать
-верхний уровень (агент или PID). Поэтому регулятор угловых скоростей — только P,
-без интегратора (см. PLAN.md, раздел 0).
+верхний уровень (агент или PID). Регулятор угловых скоростей — P или PI (`EnvConfig.rate_ki`);
+PI компенсирует постоянный момент сам (см. RESEARCH_RESULTS.md, R2).
 """
 from __future__ import annotations
 
@@ -69,7 +69,10 @@ class PositionPID:
     со статической ошибкой при постоянном возмущении.
     """
 
-    def __init__(self, params: QuadParams, gains: PIDGains, dt: float, rate_max: np.ndarray):
+    def __init__(self, params: QuadParams, gains: PIDGains, dt: float, rate_max: np.ndarray,
+                 attitude: tuple | None = None):
+        # attitude = (tilt_max, yaw_rate_max): выдавать действие режима attitude (углы + скорость рыскания)
+        self.attitude = attitude
         self.m = params.mass
         self.g = gains
         self.dt = dt
@@ -118,5 +121,14 @@ class PositionPID:
 
         action = np.empty((e_pos.shape[0], 4))
         action[:, 0] = thrust / (self.m * GRAVITY) - 1.0
-        action[:, 1:] = omega_des / self.rate_max
+        if self.attitude is not None:            # углы отрабатывает внутренний контур среды на 500 Гц
+            tilt_max, yaw_rate_max = self.attitude
+            roll_d = np.arctan2(R_des[:, 2, 1], R_des[:, 2, 2])
+            pitch_d = np.arcsin(np.clip(-R_des[:, 2, 0], -1.0, 1.0))
+            yaw = np.arctan2(R[:, 1, 0], R[:, 0, 0])
+            action[:, 1] = roll_d / tilt_max
+            action[:, 2] = pitch_d / tilt_max
+            action[:, 3] = -self.k_att[2] * yaw / yaw_rate_max
+        else:
+            action[:, 1:] = omega_des / self.rate_max
         return np.clip(action, -1.0, 1.0)

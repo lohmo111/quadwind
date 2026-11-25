@@ -7,7 +7,9 @@ episode_start. Без этого RPPO при оценке превращаетс
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+import json
+from dataclasses import dataclass, replace
+from pathlib import Path
 
 import numpy as np
 
@@ -41,15 +43,33 @@ class ConstantPolicy:
         return np.tile(self.action, (obs.shape[0], 1))
 
 
+def baseline_env_config(cfg: EnvConfig) -> EnvConfig:
+    """Keep the plant, timing, sensors, reward and action interface of a trained run."""
+    return replace(cfg, history=1, include_prev_action=True, obs_integral=False,
+                   privileged=False, residual_pid=None, residual_scale=EnvConfig.residual_scale,
+                   obs_integral_max=EnvConfig.obs_integral_max)
+
+
+def tuned_pid_gains(cfg: EnvConfig, path: str | Path | None = None) -> PIDGains:
+    if path is None:
+        if cfg.action_mode == "attitude":
+            filename = "pid_tuned_pi_att.json"
+        elif any(cfg.rate_ki):
+            filename = "pid_tuned_pi.json"
+        else:
+            filename = "pid_tuned.json"
+        path = Path(__file__).resolve().parents[1] / "configs" / filename
+    return PIDGains(**json.loads(Path(path).read_text(encoding="utf-8")))
+
+
 class PIDPolicy:
-    """Каскадный PID поверх того же CTBR-интерфейса и тех же наблюдений, что у агента."""
+    """Каскадный PID на CTBR или attitude с теми же измерениями, что у агента."""
 
     def __init__(self, cfg: EnvConfig, gains: PIDGains | None = None):
-        if cfg.action_mode != "ctbr":
-            raise ValueError("PIDPolicy выдаёт CTBR-действия")
         self.cfg = cfg
         self.gains = gains or PIDGains()
-        self.pid = PositionPID(CF2X, self.gains, 1.0 / cfg.ctrl_freq, np.asarray(cfg.rate_max))
+        att = (cfg.tilt_max, cfg.yaw_rate_max) if cfg.action_mode == "attitude" else None
+        self.pid = PositionPID(CF2X, self.gains, 1.0 / cfg.ctrl_freq, np.asarray(cfg.rate_max), attitude=att)
 
     def reset(self, n: int) -> None:
         self.pid.reset(n)

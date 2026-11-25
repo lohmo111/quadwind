@@ -60,6 +60,8 @@ def test_widgets_drive_the_simulation(view):
     before = lab.controllers[1].enabled
     view.checks.set_active(1)                              # переключить PD
     assert lab.controllers[1].enabled != before
+    lab.advance(2)
+    assert lab.controllers[1].core.step_count[0] == lab.controllers[0].core.step_count[0]
     view.s_seed.set_val(5)                                 # новый сид → сброс
     assert lab.seed == 5 and lab.t == 0.0
     click(view.b_calm)
@@ -74,3 +76,30 @@ def test_snapshot_cli(tmp_path, monkeypatch):
                                                "--from-deg", "90", "--speed", "2"])
     wind_lab.main()
     assert out.exists() and out.stat().st_size > 50_000
+
+
+def test_replay_restores_time_noise_and_scheduled_gust():
+    lab = wind_lab.Lab(wind_lab.build_controllers([]), seed=3, gust_at=0.2)
+    lab.wind.turb_sigma = 0.2
+    lab.advance(30)
+    wind = np.array([w for _, w in lab.wind_log])
+    error = np.array(lab.controllers[0].err)
+    lab.controllers[0].crashes = 1
+    lab.reset()
+    lab.advance(30)
+    np.testing.assert_array_equal(wind, [w for _, w in lab.wind_log])
+    np.testing.assert_array_equal(error, lab.controllers[0].err)
+    assert lab.controllers[0].crashes == 0
+
+
+def test_demo_matches_rppo_plant_and_pid_gains(monkeypatch):
+    from quadwind.training import load_model
+    config = {"name": "rppo__att", "env": {"action_mode": "attitude", "rate_ki": [100, 100, 50],
+                                            "privileged": True, "w_vel": 0.2, "w_tilt": 1.0}}
+    fake_model = type("Model", (), {"policy": object()})()
+    monkeypatch.setattr(load_model.__module__ + ".load_model", lambda *_: (fake_model, None, config))
+    agent, pid = wind_lab.build_controllers(["example"], demo=True)
+    assert agent.name == "RPPO" and pid.name == "PID"
+    assert pid.cfg == wind_lab.baseline_env_config(agent.cfg)
+    assert pid.cfg.action_mode == "attitude" and pid.cfg.rate_ki == (100, 100, 50)
+    assert pid.policy.gains == wind_lab.tuned_pid_gains(pid.cfg, wind_lab.ROOT / "configs/pid_tuned_pi_att.json")

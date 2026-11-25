@@ -31,6 +31,8 @@ def main() -> None:
     ap.add_argument("--threads", type=int, default=3)
     ap.add_argument("--total-steps", type=int, default=None)
     args = ap.parse_args()
+    if args.parallel < 1 or args.threads < 1:
+        ap.error("--parallel and --threads must both be positive")
 
     queue = []
     if args.plan:                                # строки «конфиг | оверлеи через + или - | сид»
@@ -59,6 +61,7 @@ def main() -> None:
                 queue.append((config, overlays, name, seed, None))
     (ROOT / "logs").mkdir(exist_ok=True)
     running: list[tuple[subprocess.Popen, str]] = []
+    failed = []
     t0 = time.time()
     while queue or running:
         while queue and len(running) < args.parallel:
@@ -71,15 +74,20 @@ def main() -> None:
                 cmd += ["--total-steps", str(steps or args.total_steps)]
             if steps:
                 cmd += ["--name-suffix", f"__{steps // 1_000_000}M"]
-            log = open(ROOT / "logs" / f"{args.exp}_{name}_s{seed}.log", "w")
-            running.append((subprocess.Popen(cmd, stdout=log, stderr=subprocess.STDOUT, cwd=ROOT), f"{name} s{seed}"))
+            with open(ROOT / "logs" / f"{args.exp}_{name}_s{seed}.log", "w") as log:
+                proc = subprocess.Popen(cmd, stdout=log, stderr=subprocess.STDOUT, cwd=ROOT)
+            running.append((proc, f"{name} s{seed}"))
             print(f"[{(time.time() - t0) / 60:6.1f} min] start {name} seed {seed}  (queue: {len(queue)})")
         time.sleep(10)
         for proc, label in list(running):
             if proc.poll() is not None:
                 running.remove((proc, label))
                 status = "ok" if proc.returncode == 0 else f"FAILED ({proc.returncode})"
+                if proc.returncode:
+                    failed.append(label)
                 print(f"[{(time.time() - t0) / 60:6.1f} min] {status}: {label}")
+    if failed:
+        raise SystemExit("Training failed: " + ", ".join(failed))
 
 
 if __name__ == "__main__":

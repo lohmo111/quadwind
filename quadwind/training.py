@@ -73,7 +73,8 @@ def make_env(cfg: dict, seed: int) -> VecNormalize:
 
 def _schedule(value: float, kind: str):
     if kind == "linear":
-        return lambda progress_remaining: value * progress_remaining
+        # The final full rollout can extend beyond the requested step budget.
+        return lambda progress_remaining: value * max(0.0, progress_remaining)
     return value
 
 
@@ -115,12 +116,14 @@ def load_model(run_dir: Path, which: str = "best"):
     run_dir = Path(run_dir)
     cfg = yaml.safe_load((run_dir / "config.yaml").read_text(encoding="utf-8"))
     path = run_dir / f"{which}_model.zip"
+    norm_path = run_dir / f"{which}_obs_norm.npz"
+    if cfg.get("normalize", {}).get("obs") and not norm_path.is_file():
+        raise FileNotFoundError(f"Checkpoint requires its matching observation statistics: {norm_path}")
     if cfg["algo"] == "rppo":
         from sb3_contrib import RecurrentPPO
         model = RecurrentPPO.load(path, device="cpu")
     else:
         model = PPO.load(path, device="cpu")
-    norm_path = run_dir / f"{which}_obs_norm.npz"
     normalizer = ObsNormalizer.load(norm_path) if norm_path.exists() else None
     return model, normalizer, cfg
 
@@ -170,7 +173,7 @@ class ValidationCallback(BaseCallback):
         normalizer = ObsNormalizer.from_vecnormalize(vn) if vn is not None and vn.norm_obs else None
         df = episode_metrics(rollout(SB3Policy(self.model, normalizer), self.env_cfg, self.conditions))
         return {"timesteps": self.num_timesteps, "rmse_capped": float(df.rmse_capped.mean()),
-                "rmse_median": float(df.rmse.median()), "crash_rate": float(df.crashed.mean()),
+                "rmse_median": float(df.loc[~df.crashed, "rmse"].median()), "crash_rate": float(df.crashed.mean()),
                 "ss_err": float(df.ss_err.median()), "hf_rms": float(df.hf_rms.median()),
                 "return": float(df["return"].mean()), "normalizer": normalizer}
 

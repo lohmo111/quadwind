@@ -35,7 +35,9 @@ class ObsRecorder(SB3Policy):
     """SB3Policy, которая дополнительно отдаёт текущее (нормированное) наблюдение как «признаки»."""
 
     def act(self, obs, episode_start):
-        self.last_obs = self.normalizer(obs) if self.normalizer is not None else obs
+        normalized = self.normalizer(obs) if self.normalizer is not None else obs
+        # Compare hidden state to the information actually available to the actor.
+        self.last_obs = normalized[:, :self.model.policy.lstm_actor.input_size]
         return super().act(obs, episode_start)
 
     def hidden(self):
@@ -58,6 +60,8 @@ def main() -> None:
     out.mkdir(parents=True, exist_ok=True)
 
     model, normalizer, cfg = load_model(run_dir, args.which)
+    if not hasattr(model.policy, "lstm_actor"):
+        ap.error("memory analysis requires a recurrent policy")
     env_cfg = EnvConfig.from_dict(cfg.get("env"))
     conds = make_suite("probe", args.n)
 
