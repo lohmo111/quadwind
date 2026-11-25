@@ -2,6 +2,10 @@
 
 Team 8 trains a recurrent policy to hold a simulated Crazyflie at a fixed position while wind, mass, motor efficiency, measurement noise and delays vary. The actor infers useful control corrections from successive measurements. The wind and true vehicle parameters are hidden from the actor.
 
+## Project background
+
+The [original Russian README](https://github.com/lohmo111/quadwind/blob/main/README.ru.md) explains the simulator, the observation and action spaces, and the interactive wind lab. The [original project plan](https://github.com/lohmo111/quadwind/blob/main/PLAN.md) records the early design choices and milestones. See the [research overview](https://github.com/lohmo111/quadwind/blob/main/research_rppo_drone_hover.html) for the motivation and literature, the [team task split](https://github.com/lohmo111/quadwind/blob/main/TEAM_TASKS.md) for responsibilities, and the [expanded experiment plan](https://github.com/lohmo111/quadwind/blob/main/PROJECT.md) for the hypotheses and comparisons.
+
 ## Start the presentation
 
 1. Open [the slides](presentation/RPPO_final_EN.pptx). The [Russian speaker notes](presentation/defense_ru.md) accompany them.
