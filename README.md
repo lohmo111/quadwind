@@ -41,7 +41,13 @@ Open [the executed notebook](notebook/rppo_one_update.ipynb) and run it from top
 | [Actor, critic and PPO loss](quadwind/native_policy.py) | Replay the recorded actions in time order, compare new and old densities, then differentiate the policy and value losses. |
 | [Training loop](quadwind/native_training.py) | Collect fresh flights, run several epochs of updates on that rollout and validate the resulting policy. |
 
-PyTorch supplies the LSTM layers, Gaussian distributions, automatic differentiation and Adam. The native trainer implements the recurrent PPO algorithm. The flight simulator still uses SB3's vector-environment interface and its observation and reward normalization. The original checkpoints, video and scores below come from the earlier SB3-Contrib training run.
+PyTorch supplies the LSTM layers, Gaussian distributions, automatic differentiation and Adam. The native trainer implements the recurrent PPO algorithm. The flight simulator uses SB3's vector-environment interface and its observation and reward normalization. The original live demo and `demo/hover.mp4` use a checkpoint from the earlier SB3-Contrib experiment.
+
+## Native PPO-LSTM before and after training
+
+Each of three seeds trained for 3 million transitions. In the paired recording, the early policy (8,192 transitions) crosses the 2 m crash threshold at 3.46 s. The validation-selected policy (3 million transitions) completes the same 15 s flight and finishes 1.33 cm from the target. Both use the same initial state, wind and sensor noise. [Paired flight video](results/native_defense/before_after.mp4) · [Validation curves](results/native_defense/validation.png)
+
+On the same 200 held-out episodes, median 3D position RMSE was **2.12, 2.22 and 2.09 cm** for native seeds 0, 1 and 2, compared with **2.49 cm** for tuned PID. Each of the four controllers finished the separate 1,000-episode safety suite with zero observed crashes. [Native training report and per-seed results](results/native_defense/summary.md)
 
 ## How the flight policy was trained
 
@@ -61,7 +67,7 @@ PyTorch supplies the LSTM layers, Gaussian distributions, automatic differentiat
 | `runs/e7/` | Three selected checkpoints, normalization statistics, full configs and validation histories in the submission |
 | `results/defense/` | Held-out episode results and per-controller summary |
 
-## Held-out flight results
+## Historical SB3-Contrib flight results
 
 The three trained policies and the tuned PID controller used identical sampled conditions, the same attitude command interface and the same inner PI loop. The `final` namespace generated fresh conditions and noise seeds after the models and gains were chosen. These results describe the simulated distribution.
 
@@ -82,10 +88,12 @@ With the project environment active, this test runs two short native rollouts in
 python -m pytest tests/test_native_training.py::test_native_hover_train_validate_and_reload
 ```
 
-For the full native training run, use the hover recipe.
+For a full native experiment, run the three training seeds and evaluate their selected checkpoints alongside the tuned PID. Each seed gets 3 million transitions. The first command keeps the reproduction in its own experiment folder.
 
 ```bash
-python scripts/train.py --config configs/rppo_hover.yaml --backend native --exp native_hover --seed 0 --threads 2
+python scripts/run_series.py --configs configs/rppo_hover.yaml --backend native --exp native_reproduction --seeds 0 1 2 --parallel 3 --threads 2
+python scripts/evaluate.py --runs "runs/native_reproduction/rppo_hover/seed_*" --which best --suites test_id safety --namespace final --baselines pid --out results/native_reproduction/episodes.csv
+python scripts/summarize_hover.py --csv results/native_reproduction/episodes.csv
 ```
 
 The flight models in `runs/e7` are ready to evaluate. To reproduce the earlier SB3-Contrib experiment, select its backend explicitly. One historical training run took about 40 minutes on the team's CPU.
@@ -97,7 +105,7 @@ python scripts/summarize_hover.py --csv results/reproduction/episodes.csv --out 
 python -m pytest
 ```
 
-To submit your own recording, run the following after exporting it as MP4. The command builds `submission/Quadwind_RPPO.zip` with that video, slides, notebook, explainer, code, three checkpoints and the evaluation data.
+To submit your own recording, run the following after exporting it as MP4. The command builds `submission/Quadwind_RPPO.zip` with that video, slides, notebook, explainer, code and checkpoints. The completed native experiment adds its paired video, validation curves, per-episode data and the three seeds’ initial, early and best checkpoints with their observation statistics.
 
 ```bash
 python scripts/package_submission.py --video my_flight.mp4

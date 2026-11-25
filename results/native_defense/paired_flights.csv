@@ -1,0 +1,3 @@
+checkpoint,seed_train,timesteps,suite,episode,condition_seed,length_s,crashed,crash_reason,peak_error_m,final_error_m
+early,0,8192,research/probe,0,1511-3613290282-0,3.46,True,distance,2.0001534311200446,2.0001534311200446
+best,0,3000000,research/probe,0,1511-3613290282-0,15.0,False,,0.18229036066471155,0.013317090668693164

@@ -1,0 +1,9 @@
+namespace,environment_group,suite,method,backend,seed_train,checkpoint,episodes,crashes,median_surviving_rmse_cm,mean_capped_rmse_cm,crash_pct,crash_ci95_low_pct,crash_ci95_high_pct
+final,1,safety,pid,baseline,0,fixed,1000,0,2.589822,2.800896,0.000000,0.000000,0.382676
+final,1,safety,rppo_hover,native,0,best,1000,0,2.140832,2.376869,0.000000,0.000000,0.382676
+final,1,safety,rppo_hover,native,1,best,1000,0,2.271825,2.590620,0.000000,0.000000,0.382676
+final,1,safety,rppo_hover,native,2,best,1000,0,2.054696,2.318633,0.000000,0.000000,0.382676
+final,1,test_id,pid,baseline,0,fixed,200,0,2.487073,2.646573,0.000000,0.000000,1.884533
+final,1,test_id,rppo_hover,native,0,best,200,0,2.118165,2.268317,0.000000,0.000000,1.884533
+final,1,test_id,rppo_hover,native,1,best,200,0,2.219862,2.413071,0.000000,0.000000,1.884533
+final,1,test_id,rppo_hover,native,2,best,200,0,2.092964,2.208089,0.000000,0.000000,1.884533

@@ -8,6 +8,7 @@ from zipfile import ZIP_DEFLATED, ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
 MODELS = Path("runs/e7/rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128")
+NATIVE_MODELS = Path("runs/native_defense/rppo_hover")
 
 
 def project_files():
@@ -27,6 +28,19 @@ def project_files():
     for seed in range(3):
         for name in ("best_model.zip", "best_obs_norm.npz", "config.yaml", "meta.json", "val_history.csv"):
             yield MODELS / f"seed_{seed}" / name
+    # The completed experiment's report marks the native results available for submission.
+    results = Path("results/native_defense")
+    if (ROOT / results / "summary.md").is_file():
+        for name in ("episodes.csv", "summary.csv", "summary.md", "before_after.mp4", "paired_flights.csv",
+                     "validation.png"):
+            yield results / name
+        for seed in range(3):
+            run = NATIVE_MODELS / f"seed_{seed}"
+            for name in ("config.yaml", "meta.json", "train_history.csv", "val_history.csv"):
+                yield run / name
+            for checkpoint in ("initial", "early", "best"):
+                yield run / f"{checkpoint}_model.zip"
+                yield run / f"{checkpoint}_obs_norm.npz"
 
 
 def main():
