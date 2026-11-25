@@ -64,6 +64,23 @@ def test_scenario_events():
     assert np.allclose(slow[t >= 5.0, 0], 2.0) and not slow[:, 1].any()   # порыв не входит в медленную часть
 
 
+def test_ramp_grows_linearly_then_holds():
+    """Нарастающий ветер: 0 до t0, линейный рост до vec за dur, затем vec держится."""
+    dt, t0, dur, speed = DT, 5.0, 3.0, 3.0
+    wp = WindParams(events=(WindEvent("ramp", t0, (speed, 0.0, 0.0), dur),))
+    n = 750
+    w, slow = generate_wind(wp, n, dt, np.random.default_rng(0))
+    t = np.arange(n) * dt
+    expected = speed * np.clip((t - t0) / dur, 0.0, 1.0)
+    np.testing.assert_allclose(w[:, 0], expected, atol=1e-12)
+    assert not w[t < t0, 0].any()
+    assert w[t >= t0 + dur, 0] == pytest.approx(speed, abs=1e-9)
+    mid = int(round((t0 + dur / 2) / dt))
+    assert w[mid, 0] == pytest.approx(speed / 2, abs=1e-9)
+    np.testing.assert_allclose(slow[:, 0], expected, atol=1e-12)  # входит в «медленную» часть
+    assert not w[:, 1].any() and not w[:, 2].any()
+
+
 def test_determinism_and_slow_part():
     wp = WindParams(speed=2.0, direction=1.0, jump_rate=0.3, jump_speed=(0.0, 3.0), slow_sigma=0.3,
                     turb_sigma=0.4, gust_rate=0.2)

@@ -72,7 +72,8 @@ class EventSpec:
 
     kind: 'mass' (value = новая m/m_ном), 'motor' (value = новая эффективность случайного мотора),
           'push' (value = сила в долях m_ном·g, горизонтально), 'wind_step' (value = прибавка ветра, м/с),
-          'wind_pulse' (value = пик порыва 1−cos, м/с).
+          'wind_pulse' (value = пик порыва 1−cos, м/с),
+          'wind_ramp' (value = конечная скорость ветра, м/с; dur = время нарастания, с).
     """
     kind: str
     time: U
@@ -183,6 +184,8 @@ class ConditionSpace:
                 wind_events.append(WindEvent("step", t, tuple(v * np.array(horiz))))
             elif ev.kind == "wind_pulse":
                 wind_events.append(WindEvent("pulse", t, tuple(v * np.array(horiz)), ev.dur.sample(rng)))
+            elif ev.kind == "wind_ramp":
+                wind_events.append(WindEvent("ramp", t, tuple(v * np.array(horiz)), ev.dur.sample(rng)))
             else:
                 raise ValueError(f"unknown event kind {ev.kind!r}")
 
@@ -258,6 +261,7 @@ OOD_SPACES = {
 SCENARIO_SPACES = {
     "calm": replace(NOMINAL_SPACE, init_radius=U(0.2, 0.5), init_yaw=(-0.5, 0.5)),
     "step_gust": replace(NOMINAL_SPACE, events=(EventSpec("wind_step", fixed(5.0), fixed(2.5)),)),
+    "ramp_gust": replace(NOMINAL_SPACE, events=(EventSpec("wind_ramp", fixed(5.0), fixed(3.0), fixed(3.0)),)),
     "gust_pulse": replace(NOMINAL_SPACE, events=(EventSpec("wind_pulse", fixed(5.0), fixed(3.0), fixed(1.0)),)),
     "mass_pickup": replace(NOMINAL_SPACE, events=(EventSpec("mass", fixed(5.0), fixed(1.2)),)),
     "mass_drop": replace(NOMINAL_SPACE, mass_ratio=fixed(1.2), events=(EventSpec("mass", fixed(5.0), fixed(1.0)),)),

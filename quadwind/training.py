@@ -131,7 +131,14 @@ def load_model(run_dir: Path, which: str = "best"):
         model = NativeModel.load(path, device="cpu")
     elif cfg["algo"] == "rppo":
         from sb3_contrib import RecurrentPPO
-        model = RecurrentPPO.load(path, device="cpu")
+        # Чекпоинты старых запусков хранят learning_rate как cloudpickled lambda,
+        # созданную в другом чекауте: на некоторых сборках Python её разбор
+        # падает с access violation. Для инференса расписание не нужно, поэтому
+        # подменяем оба связанных поля константой из конфига запуска.
+        lr = float(cfg.get("algo_kwargs", {}).get("learning_rate", 3e-4))
+        model = RecurrentPPO.load(path, device="cpu",
+                                  custom_objects={"learning_rate": lr,
+                                                  "lr_schedule": lambda _progress: lr})
     else:
         model = PPO.load(path, device="cpu")
     normalizer = ObsNormalizer.load(norm_path) if norm_obs else None

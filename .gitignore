@@ -16,3 +16,4 @@ runs/pilot/**/best_model.zip
 runs/pilot/**/best_obs_norm.npz
 runs/reward_search/**/best_model.zip
 runs/reward_search/**/best_obs_norm.npz
+TEAM_DEFENSE_PLAN(1).md

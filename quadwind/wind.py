@@ -1,7 +1,7 @@
 """Генерация ветра на весь эпизод сразу (скорость воздуха в мировой системе, м/с).
 
 w(t) = базовый (с редкими скачками) + медленный OU + турбулентность (OU или Драйден)
-       + случайные порывы «1−cos» + сценарные события (ступенька, импульс).
+       + случайные порывы «1−cos» + сценарные события (ступенька, импульс, нарастание).
 
 Ряд генерируется при сбросе эпизода из собственного генератора случайных чисел эпизода.
 Поэтому реализация ветра одинакова для всех методов при одном сиде и не зависит
@@ -39,10 +39,16 @@ class WindParams:
 
 @dataclass(frozen=True)
 class WindEvent:
-    """Сценарное событие: 'step' — постоянная прибавка с момента t; 'pulse' — порыв 1−cos длительностью dur."""
+    """Сценарное событие.
+
+    kind:
+      'step'  — постоянная прибавка vec с момента t (ветер включается и остаётся);
+      'pulse' — порыв 1−cos с пиком vec длительностью dur;
+      'ramp'  — плавное линейное нарастание от 0 до vec за dur секунд, затем vec держится.
+    """
     kind: str
     time: float
-    vec: tuple            # (3,) м/с: прибавка (step) или пик порыва (pulse)
+    vec: tuple            # (3,) м/с: прибавка (step/ramp) или пик порыва (pulse)
     dur: float = 1.0
 
 
@@ -185,6 +191,11 @@ def generate_wind(wp: WindParams, n: int, dt: float, rng: np.random.Generator,
             events += (t >= ev.time)[:, None] * vec
         elif ev.kind == "pulse":
             gusts += gust_shape(t, ev.time, ev.dur)[:, None] * vec
+        elif ev.kind == "ramp":
+            # 0 до ev.time, линейный рост до vec за ev.dur, затем постоянный vec.
+            # Попадает в «медленную» часть ветра: агент может оценить его по истории.
+            progress = np.clip((t - ev.time) / max(ev.dur, 1e-9), 0.0, 1.0)
+            events += progress[:, None] * vec
         else:
             raise ValueError(f"unknown wind event {ev.kind!r}")
 

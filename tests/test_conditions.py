@@ -109,6 +109,14 @@ def test_scenarios_have_events_at_5s():
             assert c.event_time() == pytest.approx(5.0)
 
 
+def test_ramp_gust_scenario():
+    cond = make_suite("ramp_gust", n=1)[0]
+    ev = cond.wind.events[0]
+    assert ev.kind == "ramp" and ev.time == pytest.approx(5.0) and ev.dur == pytest.approx(3.0)
+    assert np.linalg.norm(ev.vec) == pytest.approx(3.0, abs=1e-9)
+    assert cond.event_time() == pytest.approx(5.0)
+
+
 def test_wind_sweep_grid():
     sweep = make_suite("wind_sweep")
     speeds = sorted({c.wind.speed for c in sweep})
