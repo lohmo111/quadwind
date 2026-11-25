@@ -1,0 +1,13 @@
+# Release recipe for the three trained attitude-mode RPPO agents.
+name: rppo_hover
+algo: rppo
+total_timesteps: 3000000
+env:
+  action_mode: attitude
+  rate_ki: [100.0, 100.0, 50.0]
+  w_vel: 0.2
+  w_tilt: 1.0
+  privileged: true
+asymmetric_critic: true
+algo_kwargs: {n_epochs: 5, batch_size: 4096}
+policy_kwargs: {lstm_hidden_size: 128}

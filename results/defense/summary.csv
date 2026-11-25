@@ -1,0 +1,9 @@
+namespace,environment_group,suite,method,seed_train,episodes,crashes,median_surviving_rmse_cm,mean_capped_rmse_cm,crash_pct,crash_ci95_low_pct,crash_ci95_high_pct
+final,1,safety,pid,0,1000,0,2.589822,2.800896,0.000000,0.000000,0.382676
+final,1,safety,rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128,0,1000,0,2.370897,2.655488,0.000000,0.000000,0.382676
+final,1,safety,rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128,1,1000,0,2.369921,2.550139,0.000000,0.000000,0.382676
+final,1,safety,rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128,2,1000,0,2.678208,2.863060,0.000000,0.000000,0.382676
+final,1,test_id,pid,0,200,0,2.487073,2.646573,0.000000,0.000000,1.884533
+final,1,test_id,rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128,0,200,0,2.361795,2.536124,0.000000,0.000000,1.884533
+final,1,test_id,rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128,1,200,0,2.368100,2.405042,0.000000,0.000000,1.884533
+final,1,test_id,rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128,2,200,0,2.665823,2.763010,0.000000,0.000000,1.884533
