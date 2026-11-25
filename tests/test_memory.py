@@ -40,3 +40,23 @@ def test_hooks_modify_lstm_state():
     assert pol.state[0][0, 0, 0] == 6.0
     zero_state_hook(5)(5, pol, None)
     assert not pol.state[0].any()
+
+
+def test_intervention_affects_requested_decision():
+    ro = rollout(SB3Policy(_FakeRecurrentModel()), EnvConfig(), make_suite("calm", 1),
+                 record_hidden=True, hook=zero_state_hook(2))
+    np.testing.assert_array_equal(ro.hidden[:4, 0, 0], [1, 2, 1, 2])
+
+
+def test_intervention_stats_exclude_finished_flights():
+    from types import SimpleNamespace
+    from scripts.analyze_memory import intervention_stats
+
+    errors = np.array([[1., 2.], [100., 4.]])
+    r = SimpleNamespace(data={"pos_err": errors[:, :, None]}, alive=np.array([[1, 1], [0, 1]], dtype=bool),
+                        crashed=np.array([True, False]))
+    pairs = np.ones(2, dtype=bool)
+    stats = intervention_stats(r, slice(0, 2), pairs)
+    assert stats["mean_err_2s"] == 7 / 3 and stats["peak_err_2s"] == 4.0
+    empty = intervention_stats(r, slice(7, 10), pairs)
+    assert empty["samples_2s"] == 0 and empty["mean_err_2s"] is None and empty["peak_err_2s"] is None

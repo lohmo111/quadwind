@@ -48,6 +48,14 @@ def collect(policy, env_cfg, conds):
     return rollout(policy, env_cfg, conds, record_hidden=True)
 
 
+def intervention_stats(r, window, include):
+    errors = np.linalg.norm(r.data["pos_err"][window], axis=2)
+    valid = errors[r.alive[window] & include]
+    return {"mean_err_2s": float(valid.mean()) if valid.size else None,
+            "peak_err_2s": float(valid.max()) if valid.size else None,
+            "samples_2s": int(valid.size), "crashed": float(r.crashed.mean())}
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", required=True)
@@ -118,20 +126,26 @@ def main() -> None:
     base = rollout(SB3Policy(model, normalizer), env_cfg, sweep)
     zero = rollout(SB3Policy(model, normalizer), env_cfg, sweep, hook=zero_state_hook(t_star))
     opposite = np.array([2, 3, 0, 1])                      # направления 0↔π, π/2↔3π/2
-    swap = rollout(SB3Policy(model, normalizer), env_cfg, sweep, hook=swap_state_hook(t_star, opposite))
+    # A donor and its recipient must both have reached the intervention decision.
+    reached = base.length > t_star
+    paired = reached & reached[opposite]
+    donors = np.where(paired, opposite, np.arange(len(sweep)))
+    swap = rollout(SB3Policy(model, normalizer), env_cfg, sweep, hook=swap_state_hook(t_star, donors))
     window = slice(t_star, t_star + int(2.0 / env_cfg_dt(env_cfg)))
     inter = []
     for name, r in (("none", base), ("zero_h", zero), ("swap_opposite_wind_h", swap)):
-        err = np.linalg.norm(r.data["pos_err"][window], axis=2)
-        inter.append({"intervention": name, "mean_err_2s": float(err.mean()), "peak_err_2s": float(err.max()),
-                      "crashed": float(r.crashed.mean())})
+        inter.append({"intervention": name, **intervention_stats(r, window, paired)})
     pd.DataFrame(inter).to_csv(out / "intervention.csv", index=False)
 
-    t = base.t
     fig, ax = plt.subplots(figsize=(7, 3.4))
-    for name, r in (("без вмешательства", base), ("обнуление h", zero), ("h от противоположного ветра", swap)):
-        ax.plot(t, np.linalg.norm(r.data["pos_err"][:, 0], axis=1), label=name)
-    ax.axvline(t[t_star], color="grey", ls="--", lw=0.8)
+    episode = int(np.argmax(paired))
+    for name, r in (("без вмешательства", base), ("обнуление h, c", zero), ("h, c от противоположного ветра", swap)):
+        if r is swap and not paired[episode]:
+            continue
+        live = r.alive[:, episode]
+        ax.plot(r.t[live], np.linalg.norm(r.data["pos_err"][live, episode], axis=1), label=name)
+    if reached[episode]:
+        ax.axvline(t_star * base.dt, color="grey", ls="--", lw=0.8)
     ax.set_xlabel("время, с")
     ax.set_ylabel("ошибка позиции, м")
     ax.set_title("Вмешательство в память при ветре 3 м/с")

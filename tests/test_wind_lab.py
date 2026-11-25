@@ -78,6 +78,16 @@ def test_snapshot_cli(tmp_path, monkeypatch):
     assert out.exists() and out.stat().st_size > 50_000
 
 
+def test_crash_on_last_frame_counts_as_a_crash(monkeypatch):
+    monkeypatch.setattr(wind_lab, "LAB_SECONDS", 0.02)
+    controllers = wind_lab.build_controllers([])
+    lab = wind_lab.Lab(controllers)
+    controllers[0].core.dyn.pos[0, 2] = 0.0
+    lab.advance(1)
+    assert controllers[0].crashes == 1 and controllers[0].crash_timer > 0
+    assert controllers[1].crashes == 0 and controllers[1].core.step_count[0] == 0
+
+
 def test_replay_restores_time_noise_and_scheduled_gust():
     lab = wind_lab.Lab(wind_lab.build_controllers([]), seed=3, gust_at=0.2)
     lab.wind.turb_sigma = 0.2

@@ -17,7 +17,7 @@ from stable_baselines3.common.vec_env import VecMonitor, VecNormalize
 from .conditions import SCENARIO_SPACES, TRAIN_SPACE, ConditionSpace, make_suite, override_space
 from .env import PRIV_DIM, EnvConfig, QuadHoverVecEnv
 from .evaluation import rollout
-from .metrics import episode_metrics
+from .metrics import SETTLE_TIME, episode_metrics
 from .policies import ObsNormalizer, SB3Policy
 
 CONFIG_DIR = Path(__file__).resolve().parent.parent / "configs"
@@ -79,6 +79,10 @@ def _schedule(value: float, kind: str):
 
 
 def make_model(cfg: dict, env, seed: int, device: str = "cpu", tensorboard_log: str | None = None):
+    if cfg.get("backend") == "native":
+        from .native_training import NativeModel
+        return NativeModel.from_config(cfg, env, seed, device)
+
     import torch.nn as nn
 
     kw = dict(cfg["algo_kwargs"])
@@ -117,14 +121,20 @@ def load_model(run_dir: Path, which: str = "best"):
     cfg = yaml.safe_load((run_dir / "config.yaml").read_text(encoding="utf-8"))
     path = run_dir / f"{which}_model.zip"
     norm_path = run_dir / f"{which}_obs_norm.npz"
-    if cfg.get("normalize", {}).get("obs") and not norm_path.is_file():
+    # Older run configs can omit normalize; newer runs explicitly record whether
+    # the policy consumed raw observations, even if an older .npz is present.
+    norm_obs = cfg.get("normalize", {}).get("obs", norm_path.is_file())
+    if norm_obs and not norm_path.is_file():
         raise FileNotFoundError(f"Checkpoint requires its matching observation statistics: {norm_path}")
-    if cfg["algo"] == "rppo":
+    if cfg.get("backend") == "native":
+        from .native_training import NativeModel
+        model = NativeModel.load(path, device="cpu")
+    elif cfg["algo"] == "rppo":
         from sb3_contrib import RecurrentPPO
         model = RecurrentPPO.load(path, device="cpu")
     else:
         model = PPO.load(path, device="cpu")
-    normalizer = ObsNormalizer.load(norm_path) if norm_path.exists() else None
+    normalizer = ObsNormalizer.load(norm_path) if norm_obs else None
     return model, normalizer, cfg
 
 
@@ -156,6 +166,19 @@ class TrainingMonitor(BaseCallback):
         return True
 
 
+def validation_metrics(model, normalizer, env_cfg, conditions, timesteps: int) -> dict:
+    """Evaluate a frozen policy on the same episode suite for both trainers."""
+    df = episode_metrics(rollout(SB3Policy(model, normalizer), env_cfg, conditions), max_dist=env_cfg.max_dist)
+    score = float(df.rmse_capped.mean(skipna=False))
+    if not np.isfinite(score):
+        raise ValueError(f"Validation produced no finite checkpoint score. Position RMSE requires "
+                         f"observations at or after {SETTLE_TIME:g} s in a successful episode.")
+    return {"timesteps": timesteps, "rmse_capped": score,
+            "rmse_median": float(df.loc[~df.crashed, "rmse"].median()), "crash_rate": float(df.crashed.mean()),
+            "ss_err": float(df.ss_err.median()), "hf_rms": float(df.hf_rms.median()),
+            "return": float(df["return"].mean())}
+
+
 class ValidationCallback(BaseCallback):
     """Раз в eval_freq шагов: оценка на фиксированном наборе `val`; лучший по rmse_capped чекпоинт сохраняется."""
 
@@ -171,16 +194,17 @@ class ValidationCallback(BaseCallback):
     def evaluate(self) -> dict:
         vn = self.model.get_vec_normalize_env()
         normalizer = ObsNormalizer.from_vecnormalize(vn) if vn is not None and vn.norm_obs else None
-        df = episode_metrics(rollout(SB3Policy(self.model, normalizer), self.env_cfg, self.conditions))
-        return {"timesteps": self.num_timesteps, "rmse_capped": float(df.rmse_capped.mean()),
-                "rmse_median": float(df.loc[~df.crashed, "rmse"].median()), "crash_rate": float(df.crashed.mean()),
-                "ss_err": float(df.ss_err.median()), "hf_rms": float(df.hf_rms.median()),
-                "return": float(df["return"].mean()), "normalizer": normalizer}
+        return {**validation_metrics(self.model, normalizer, self.env_cfg, self.conditions, self.num_timesteps),
+                "normalizer": normalizer}
 
     def _on_step(self) -> bool:
+        # SB3 calls on_step before optimizing the final rollout. Evaluate that
+        # checkpoint in on_training_end, after its weights have changed.
         if self.num_timesteps >= self._next:
             self._next += self.eval_freq
-            self._run()
+            last_step = self.locals["n_steps"] + 1 == self.locals["n_rollout_steps"]
+            if not (last_step and self.num_timesteps >= self.model._total_timesteps):
+                self._run()
         return True
 
     def _run(self) -> None:
@@ -203,12 +227,17 @@ class ValidationCallback(BaseCallback):
 
 
 def environment_info() -> dict:
+    from importlib.metadata import PackageNotFoundError, version
+
     import gymnasium
-    import sb3_contrib
     import stable_baselines3
     import torch
+    try:
+        contrib_version = version("sb3-contrib")
+    except PackageNotFoundError:
+        contrib_version = None
     return {"python": platform.python_version(), "platform": platform.platform(), "numpy": np.__version__,
-            "torch": torch.__version__, "sb3": stable_baselines3.__version__, "sb3_contrib": sb3_contrib.__version__,
+            "torch": torch.__version__, "sb3": stable_baselines3.__version__, "sb3_contrib": contrib_version,
             "gymnasium": gymnasium.__version__, "time": time.strftime("%Y-%m-%d %H:%M:%S")}
 
 

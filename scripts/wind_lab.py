@@ -73,7 +73,7 @@ class Controller:
         self.policy.reset(1)
         self.start = np.ones(1, dtype=bool)
 
-    def step(self, wind: np.ndarray, t: float) -> bool:
+    def step(self, wind: np.ndarray, t: float) -> tuple[bool, bool]:
         core = self.core
         core.wind_override = wind
         action = self.policy.act(core.observe(), self.start)
@@ -84,7 +84,7 @@ class Controller:
         self.err.append(e.copy())
         self.tilt.append(float(np.degrees(np.arccos(np.clip(core.dyn.R[0, 2, 2], -1, 1)))))
         self.xy.append(e[:2].copy())
-        return bool(terminated[0] or truncated[0])
+        return bool(terminated[0]), bool(truncated[0])
 
     def trim(self, t_now: float) -> None:
         k = 0
@@ -164,12 +164,12 @@ class Lab:
                     if c.crash_timer == 0:
                         c.reset(self.seed, self.noise_scale, self.act_delay, self.mass_ratio, self.motor1)
                     continue
-                if c.step(w, self.t):
-                    if c.core.step_count[0] < c.core.max_steps:
-                        c.crashes += 1
-                        c.crash_timer = int(1.0 / self.dt)
-                    else:
-                        c.reset(self.seed, self.noise_scale, self.act_delay, self.mass_ratio, self.motor1)
+                crashed, timed_out = c.step(w, self.t)
+                if crashed:
+                    c.crashes += 1
+                    c.crash_timer = int(1.0 / self.dt)
+                elif timed_out:
+                    c.reset(self.seed, self.noise_scale, self.act_delay, self.mass_ratio, self.motor1)
         while self.wind_log and self.wind_log[0][0] < self.t - HISTORY_S:
             self.wind_log.pop(0)
         for c in self.controllers:

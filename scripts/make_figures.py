@@ -37,19 +37,23 @@ from quadwind.training import load_model  # noqa: E402
 
 def ordered(methods) -> list[str]:
     order = list(style.PRIMARY) + [m for m in style.METHODS if m not in style.PRIMARY]
-    return sorted(methods, key=lambda m: (order.index(m.split("__")[0]) if m.split("__")[0] in order
-                                         else len(order), m))
+    rank = {m: i for i, m in enumerate(order)}
+    return sorted(methods, key=lambda m: (rank.get(m.partition(" [")[0].partition("__")[0], len(order)), m))
 
 
 def plot_style(method: str, methods):
-    base, _, variant = method.partition("__")
+    model, separator, origin = method.partition(" [")
+    base, _, variant = model.partition("__")
     name, col, ls, marker = style.style(base)
-    related = sorted(m for m in methods if m.partition("__")[0] == base)
+    related = sorted(m for m in methods if m.partition(" [")[0].partition("__")[0] == base)
     if len(related) > 1:
         index = related.index(method)
-        name = f"{name} ({variant or 'base'})"
+        if any(m.partition(" [")[0] != model for m in related):
+            name = f"{name} ({variant or 'base'})"
         ls = ["-", "--", "-.", ":"][index % 4]
-    return name, col, ls, marker
+        markers = [marker] + [m for m in ("o", "v", "^", "s", "D", "P", "X") if m != marker]
+        marker = markers[index % len(markers)]
+    return name + separator + origin, col, ls, marker
 
 
 def end_labels(ax, items: list[tuple[float, float, str]]) -> None:
@@ -67,7 +71,7 @@ def end_labels(ax, items: list[tuple[float, float, str]]) -> None:
 
 
 def fig_static_error(df: pd.DataFrame, out: Path) -> None:
-    sweep = df[df.suite == "wind_sweep"]
+    sweep = style.report_methods(df[df.suite == "wind_sweep"])
     if sweep.empty:
         return
     fig, ax = plt.subplots(figsize=(7.2, 4.2))
@@ -95,7 +99,7 @@ def fig_static_error(df: pd.DataFrame, out: Path) -> None:
 
 
 def fig_val_summary(df: pd.DataFrame, out: Path, suite: str = "val") -> None:
-    val = df[df.suite == suite]
+    val = style.report_methods(df[df.suite == suite])
     if val.empty:
         return
     seed_col = "seed_train" if "seed_train" in val.columns else "run"
@@ -126,6 +130,7 @@ def fig_suites(df: pd.DataFrame, out: Path) -> None:
     suites = [s for s in df.suite.unique() if s == "test_id" or s.startswith("ood_")]
     if len(suites) < 2:
         return
+    df = style.report_methods(df[df.suite.isin(suites)])
     methods = ordered(df.method.unique())
     fig, ax = plt.subplots(figsize=(7.6, 0.45 * len(suites) + 1.4))
     offsets = np.linspace(-0.24, 0.24, len(methods))
@@ -159,7 +164,8 @@ def fig_event_response(runs: list[str], out: Path, suites=("step_gust", "mass_pi
         if plant is not None and plant != matched:
             raise ValueError("An event figure requires one plant and sensor configuration. Plot the groups separately.")
         plant = matched
-        seeds = policies.setdefault(cfg["name"], {})
+        method = style.report_method(cfg["name"], cfg.get("backend", "sb3"), "best")
+        seeds = policies.setdefault(method, {})
         if run_dir.name in seeds:
             raise ValueError(f"Duplicate {cfg['name']} / {run_dir.name}. Select one checkpoint per seed.")
         seeds[run_dir.name] = (SB3Policy(model, normalizer), env_cfg)

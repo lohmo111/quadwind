@@ -19,6 +19,7 @@ sys.path.insert(0, str(ROOT))
 import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 
+from quadwind.style import report_methods  # noqa: E402
 from quadwind.conditions import make_suite  # noqa: E402
 from quadwind.env import EnvConfig  # noqa: E402
 from quadwind.evaluation import rollout  # noqa: E402
@@ -44,6 +45,7 @@ def evaluate(policy, env_cfg, space, tags: dict) -> pd.DataFrame:
 
 
 def summarize(df: pd.DataFrame) -> dict[str, pd.DataFrame]:
+    df = report_methods(df)
     val = df[df.suite == "val"]
     sweep = df[(df.suite == "wind_sweep") & (df.cond_wind_speed.between(2.0, 3.0))]
     gust = df[df.suite == "step_gust"]
@@ -51,7 +53,8 @@ def summarize(df: pd.DataFrame) -> dict[str, pd.DataFrame]:
 
     def pivot(frame, col, agg="mean", scale=1.0):
         t = frame.groupby(["variant", "method"])[col].agg(agg).unstack("method") * scale
-        return t[[m for m in METHOD_ORDER if m in t.columns] + [m for m in t.columns if m not in METHOD_ORDER]]
+        rank = {m: i for i, m in enumerate(METHOD_ORDER)}
+        return t[sorted(t.columns, key=lambda m: (rank.get(m.partition(" [")[0], len(rank)), m))]
 
     return {
         "val: rmse_capped, см (падение = 200 см)": pivot(val, "rmse_capped", scale=100),
@@ -93,18 +96,22 @@ def main() -> None:
             ap.error(f"Variant {variant!r} has different plants or validation distributions. Compare them separately.")
         variants[variant] = variant_setup
         seed = int(run_dir.name.removeprefix("seed_"))
-        if (method, variant, seed) in seen:
-            ap.error(f"Multiple checkpoints for {method}, {variant}, seed {seed}. Select one experiment at a time.")
-        seen.add((method, variant, seed))
+        backend = cfg.get("backend", "sb3")
+        run_key = (method, variant, backend, seed)
+        if run_key in seen:
+            ap.error(f"Multiple {backend} checkpoints for {method}, {variant}, seed {seed}. Select one experiment at a time.")
+        seen.add(run_key)
         frames.append(evaluate(SB3Policy(model, normalizer), env_cfg, space,
-                               {"variant": variant, "method": method, "run": str(run_dir), "seed_train": seed}))
+                               {"variant": variant, "method": method, "backend": backend, "checkpoint": args.which,
+                                "run": str(run_dir), "seed_train": seed}))
         print(f"evaluated {method} / {variant}")
 
     for variant, (env_cfg, space) in variants.items():
         gains = tuned_pid_gains(env_cfg)
         for method, g in (("pid", gains), ("pd", gains.without_integrators())):
             frames.append(evaluate(PIDPolicy(env_cfg, g), env_cfg, space,
-                                   {"variant": variant, "method": method, "run": method, "seed_train": 0}))
+                                   {"variant": variant, "method": method, "backend": "baseline", "checkpoint": "fixed",
+                                    "run": method, "seed_train": 0}))
 
     if not frames:
         ap.error("no loadable checkpoints in the requested runs")
@@ -115,12 +122,17 @@ def main() -> None:
     for title, t in tables.items():
         lines += [f"## {title}\n", t.round(2).to_markdown(), ""]
     rc = tables["val: rmse_capped, см (падение = 200 см)"]
-    if {"ppo_mlp", "rppo"} <= set(rc.columns):
-        gain = pd.DataFrame({"MLP − RPPO, см": rc["ppo_mlp"] - rc["rppo"]})
-        if "ppo_mlp_integral" in rc.columns:
-            gain["MLP − MLP+∫, см"] = rc["ppo_mlp"] - rc["ppo_mlp_integral"]
-            gain["MLP+∫ − RPPO, см"] = rc["ppo_mlp_integral"] - rc["rppo"]
-        lines += ["## Разница между методами на val (RMSE с учётом падений), см\n", gain.round(2).to_markdown(), ""]
+    for rppo in rc:
+        method, separator, origin = rppo.partition(" [")
+        suffix = separator + origin
+        mlp, integral = "ppo_mlp" + suffix, "ppo_mlp_integral" + suffix
+        if method != "rppo" or mlp not in rc:
+            continue
+        gain = pd.DataFrame({"MLP − RPPO, см": rc[mlp] - rc[rppo]})
+        if integral in rc:
+            gain["MLP − MLP+∫, см"] = rc[mlp] - rc[integral]
+            gain["MLP+∫ − RPPO, см"] = rc[integral] - rc[rppo]
+        lines += [f"## Разница между методами на val (RMSE с учётом падений), см{suffix}\n", gain.round(2).to_markdown(), ""]
     (out / "summary.md").write_text("\n".join(lines), encoding="utf-8")
     print("\n".join(lines))
 

@@ -36,6 +36,19 @@ def label(method: str) -> str:
     return style(method)[0]
 
 
+def report_method(method: str, backend: str = "", checkpoint: str = "") -> str:
+    """Qualify learned policies when the reported episodes identify their origin."""
+    if backend == "baseline":
+        return method
+    origin = ", ".join(part for part in (backend, checkpoint) if part)
+    return f"{method} [{origin}]" if origin else method
+
+
+def report_methods(episodes):
+    tags = episodes.reindex(columns=["method", "backend", "checkpoint"]).fillna("")
+    return episodes.assign(method=[report_method(*row) for row in tags.itertuples(index=False, name=None)])
+
+
 def color(method: str) -> str:
     return style(method)[1]
 

@@ -4,6 +4,8 @@
 Постоянный ветер 2 / 3 / 4 м/с × 4 направления (wind_sweep), в t* = 7,5 с обнуляется память:
 у RPPO — h и c, у политик с ∫ — признак ∫e_p, у RPPO + ∫ — по отдельности и вместе, у PID — интеграторы по позиции.
 Ошибка, см: средняя и пиковая за 2 с после t*, средняя за последние 2 с эпизода (восстановилась ли).
+При чтении исторических CSV учитывайте, что прежний хук срабатывал после выбора действия.
+При 50 Гц первая команда с изменённой памятью тогда выбиралась в 7,52 с.
 """
 import glob, json, sys
 from pathlib import Path
@@ -46,9 +48,14 @@ def measure(policy, ec, conds, **kw):
     step = int(T_STAR * ec.ctrl_freq)
     ro = rollout(policy, ec, conds, hook=hook(step, **kw))
     err = 100 * np.linalg.norm(ro.data["pos_err"], axis=2)            # (T, N), см
-    w = slice(step, step + int(2 * ec.ctrl_freq))
-    return {"mean_2s": err[w].mean(), "peak_2s": err[w].max(axis=0).mean(),
-            "last_2s": err[-int(2 * ec.ctrl_freq):].mean(), "crashed": ro.crashed.mean()}
+    width = int(2 * ec.ctrl_freq)
+    window = slice(step, step + width)
+    valid = err[window][ro.alive[window]]
+    peaks = [err[step:min(step + width, end), i].max() for i, end in enumerate(ro.length) if end > step]
+    last = np.concatenate([err[max(0, end - width):end, i] for i, end in enumerate(ro.length)])
+    return {"mean_2s": valid.mean() if valid.size else np.nan,
+            "peak_2s": np.mean(peaks) if peaks else np.nan,
+            "last_2s": last.mean(), "crashed": ro.crashed.mean()}
 
 
 def main():

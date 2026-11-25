@@ -27,13 +27,25 @@ Use **Gust**, **Push**, **Replay** and **Pause** to rehearse. The seed fixes the
 .\.venv\Scripts\python.exe scripts/wind_lab.py --demo --mp4 my_flight.mp4 --seconds 15 --fps 20
 ```
 
+## One PPO-LSTM update in the notebook
+
+Open [the executed notebook](notebook/rppo_one_update.ipynb) and run it from top to bottom. Follow one action through the three recorded transitions. What did the LSTM remember? Was the reward better than the critic expected? How did one Adam step change the density of that action and the critic's prediction? The notebook calls the same rollout, loss and update functions as the native trainer. The small example runs on CPU independently of the flight checkpoints.
+
+| Where to look | What to explain |
+|---|---|
+| [Trajectory collection and GAE](quadwind/native_rollout.py) | Store each action, its old log-density and pre-action memory. Work backwards from rewards to advantages and value targets. |
+| [Actor, critic and PPO loss](quadwind/native_policy.py) | Replay the recorded actions in time order, compare new and old densities, then differentiate the policy and value losses. |
+| [Training loop](quadwind/native_training.py) | Collect fresh flights, run several epochs of updates on that rollout and validate the resulting policy. |
+
+PyTorch supplies the LSTM layers, Gaussian distributions, automatic differentiation and Adam. The native trainer implements the recurrent PPO algorithm. The flight simulator still uses SB3's vector-environment interface and its observation and reward normalization. The original checkpoints, video and scores below come from the earlier SB3-Contrib training run.
+
 ## How the flight policy was trained
 
 - **Environment.** The rigid-body simulator advances at 500 Hz. Every 20 ms the policy chooses four continuous commands for collective thrust, roll, pitch and yaw rate. Each episode lasts up to 15 seconds. Position error, motion, tilt and control effort shape the reward. A crash ends the episode with a reward of −50.
 - **Information.** The actor receives 22 normalized features per frame, including the previous command. Actor and critic have separate 128-unit LSTMs. During training the critic also receives 13 simulator features, such as true wind and mass. During inference only the actor chooses actions. The demo reuses its hidden and cell states on each decision and resets them at episode boundaries.
 - **Optimization.** Sixteen environments collect 512 decisions each per rollout (8,192 transitions). Recurrent PPO uses GAE with γ = 0.99 and λ = 0.95, ratio clipping at 0.2, batches of 4,096 transitions and five optimization epochs per rollout. Both heads use two 128-unit tanh layers. Adam starts at 0.0003 with linear decay. The curriculum reaches full difficulty at 30% of the step budget.
 - **Model selection.** Each of three independent training seeds had a budget of 3 million transitions. The library finishes the last rollout, giving 3,006,464 transitions. A separate validation set of 256 episodes was evaluated every 250,000 transitions. We kept the checkpoint with the smallest mean position RMSE, assigning a crashed episode a 2 m error. The demo uses seed 0; its selected checkpoint was at 2.5 million transitions.
-- **Implementation.** Training uses `sb3_contrib.RecurrentPPO` for rollout storage, GAE and PPO optimization. The project implements the simulator, observation layout, asymmetric actor–critic, batched LSTM sequence handling, training configuration and evaluation. The notebook implements the equations directly in PyTorch and takes a visible gradient step on a three-transition, single-axis example. The full flight policy uses Adam and four continuous outputs; the teaching example uses SGD and one output so the update can be checked by hand.
+- **Implementation of the packaged runs.** The original experiments used `sb3_contrib.RecurrentPPO` with the project's simulator, asymmetric actor-critic, recurrent sequence processing and evaluation protocol.
 
 | Entry point | Purpose |
 |---|---|
@@ -51,21 +63,33 @@ The three trained policies and the tuned PID controller used identical sampled c
 
 | Controller | Median position RMSE on 200 test episodes | Crashes on a separate 1,000 episodes |
 |---|---:|---:|
-| RPPO, seed 0 (demo) | 2.36 cm | 0 / 1,000 |
-| RPPO, seed 1 | 2.37 cm | 0 / 1,000 |
-| RPPO, seed 2 | 2.67 cm | 0 / 1,000 |
+| SB3-Contrib RPPO, seed 0 (demo) | 2.36 cm | 0 / 1,000 |
+| SB3-Contrib RPPO, seed 1 | 2.37 cm | 0 / 1,000 |
+| SB3-Contrib RPPO, seed 2 | 2.67 cm | 0 / 1,000 |
 | Tuned PID | 2.49 cm | 0 / 1,000 |
 
 RMSE is the root mean square of the 3D position error from 2 seconds onward. The table reports the median across surviving episodes. RPPO achieved centimetre-scale hover comparable to PID here. Zero observed crashes gives a two-sided 95% Wilson upper limit of about 0.38% **per controller** for the 1,000-episode suite. All controllers faced the same 1,000 conditions. This experiment measures simulated hover; the contribution of memory alone requires a matched ablation.
 
 ## Reproduce the experiment
 
-The commands below assume the project environment is active. The models in `runs/e7` are ready to evaluate. Retraining writes a separate run in `runs/reproduction`. One historical training run took about 40 minutes on the team's CPU. Validation uses the historical validation split so the checkpoint selection criterion is reproducible.
+With the project environment active, this test runs two short native rollouts in the hover simulator and reloads the checkpoints from a temporary folder.
 
 ```bash
-python scripts/train.py --config configs/rppo_hover.yaml --exp reproduction --seed 0 --threads 2
-python scripts/evaluate.py --runs "runs/e7/rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128/seed_*" --baselines pid --suites test_id safety --namespace final --out results/defense/episodes.csv
-python scripts/summarize_hover.py
+python -m pytest tests/test_native_training.py::test_native_hover_train_validate_and_reload
+```
+
+For the full native training run, use the hover recipe.
+
+```bash
+python scripts/train.py --config configs/rppo_hover.yaml --backend native --exp native_hover --seed 0 --threads 2
+```
+
+The flight models in `runs/e7` are ready to evaluate. To reproduce the earlier SB3-Contrib experiment, select its backend explicitly. One historical training run took about 40 minutes on the team's CPU.
+
+```bash
+python scripts/train.py --config configs/rppo_hover.yaml --backend sb3 --exp reproduction --seed 0 --threads 2
+python scripts/evaluate.py --runs "runs/e7/rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128/seed_*" --baselines pid --suites test_id safety --namespace final --out results/reproduction/episodes.csv
+python scripts/summarize_hover.py --csv results/reproduction/episodes.csv --out results/reproduction/summary.csv
 python -m pytest
 ```
 

@@ -14,7 +14,7 @@ def project_files():
     yield from map(Path, (
         "README.md", "requirements.txt", "requirements-notebook.txt", "pytest.ini", "start_demo.cmd",
         "presentation/RPPO_final_EN.pptx", "presentation/defense_ru.md",
-        "notebook/rppo_one_update.ipynb", "docs/rppo_one_update_ru.html",
+        "notebook/rppo_one_update.ipynb", "docs/rppo_one_update_ru.html", "docs/TEAM_DEFENSE_PLAN.md",
         "results/defense/episodes.csv", "results/defense/summary.csv",
         "configs/base.yaml", "configs/rppo_hover.yaml", "configs/rppo.yaml",
         "configs/ppo_mlp.yaml", "configs/ppo_stack16.yaml", "configs/ppo_oracle.yaml",

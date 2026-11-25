@@ -66,7 +66,7 @@ def main() -> None:
     ap.add_argument("--suites", nargs="+", default=["val"])
     ap.add_argument("--namespace", choices=["research", "final"], default="research",
                     help="independent episode seeds for the final evaluation")
-    ap.add_argument("--which", default="best", choices=["best", "final"])
+    ap.add_argument("--which", default="best", choices=["initial", "early", "best", "final"])
     ap.add_argument("--baselines", nargs="*", default=[], choices=["pid", "pd"])
     ap.add_argument("--pid-gains", default=None, help="JSON с коэффициентами PID (из tune_pid.py)")
     ap.add_argument("--out", default="results/episodes.csv")
@@ -102,7 +102,8 @@ def main() -> None:
         group = baseline_configs.index(matched_cfg) + 1
         seed = int(run_dir.name.split("_")[-1]) if run_dir.name.startswith("seed_") else 0
         frames.append(evaluate_policy(SB3Policy(model, normalizer), env_cfg, suites,
-                                      {"method": cfg["name"], "seed_train": seed, "run": str(run_dir),
+                                      {"method": cfg["name"], "backend": cfg.get("backend", "sb3"),
+                                       "seed_train": seed, "run": str(run_dir), "checkpoint": args.which,
                                        "environment_group": group}, namespace=args.namespace))
         print(f"evaluated {run_dir}")
 
@@ -112,7 +113,8 @@ def main() -> None:
             g = gains.without_integrators() if name == "pd" else gains
             label = name if len(baseline_configs) <= 1 else f"{name}__group{group}_{env_cfg.action_mode}"
             frames.append(evaluate_policy(PIDPolicy(env_cfg, g), env_cfg, suites,
-                                          {"method": label, "seed_train": 0, "run": label,
+                                          {"method": label, "backend": "baseline", "seed_train": 0, "run": label,
+                                           "checkpoint": "fixed",
                                            "environment_group": group}, namespace=args.namespace))
             print(f"evaluated {label}")
     if not frames:
@@ -123,8 +125,9 @@ def main() -> None:
     df.to_csv(out, index=False)
 
     pd.set_option("display.width", 200)
-    crash = df.groupby(["suite", "method"]).crashed.mean().rename("crash_rate")
-    table = summarize(df, "rmse_capped").set_index(["suite", "method"])[["value", "ci_low", "ci_high", "n_seeds"]]
+    groups = ["environment_group", "suite", "method", "backend", "checkpoint"]
+    crash = df.groupby(groups).crashed.mean().rename("crash_rate")
+    table = summarize(df, "rmse_capped", by=groups).set_index(groups)[["value", "ci_low", "ci_high", "n_seeds"]]
     print(table.join(crash).round(4).to_string())
     print(f"\n{len(df)} episodes -> {out}")
 

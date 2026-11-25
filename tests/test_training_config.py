@@ -1,11 +1,15 @@
 """Конфиги: базовый + метод + оверлеи вариантов; переопределения пространства условий; val варианта."""
 import numpy as np
+import pandas as pd
 import pytest
 import yaml
 from pathlib import Path
+from types import SimpleNamespace
 
 from quadwind.conditions import TRAIN_SPACE, U, make_suite, override_space
-from quadwind.training import _schedule, build_space, load_config, load_model
+from quadwind.env import EnvConfig
+from quadwind.training import ValidationCallback, _schedule, build_space, load_config, load_model, validation_metrics
+from scripts.run_series import finished_run
 
 
 def test_release_recipe_matches_shipped_checkpoints():
@@ -22,6 +26,47 @@ def test_normalized_checkpoint_requires_statistics(tmp_path):
     (tmp_path / "config.yaml").write_text("algo: rppo\nnormalize: {obs: true}\n", encoding="utf-8")
     with pytest.raises(FileNotFoundError, match="best_obs_norm"):
         load_model(tmp_path)
+
+
+def test_unnormalized_checkpoint_ignores_old_statistics(tmp_path, monkeypatch):
+    (tmp_path / "config.yaml").write_text("algo: ppo\nnormalize: {obs: false}\n", encoding="utf-8")
+    (tmp_path / "best_obs_norm.npz").touch()
+    monkeypatch.setattr("quadwind.training.PPO.load", lambda *args, **kwargs: object())
+    _, normalizer, _ = load_model(tmp_path)
+    assert normalizer is None
+
+
+def test_validation_keeps_every_episode_in_score(monkeypatch):
+    cfg = EnvConfig(max_dist=4.0)
+    monkeypatch.setattr("quadwind.training.rollout", lambda *args: object())
+    def short_flights(rollout, max_dist):
+        assert max_dist == cfg.max_dist
+        # Crash at 4 m; the other flight survived but ended before settling.
+        return pd.DataFrame({"rmse_capped": [max_dist, np.nan]})
+    monkeypatch.setattr("quadwind.training.episode_metrics", short_flights)
+    with pytest.raises(ValueError, match="RMSE"):
+        validation_metrics(SimpleNamespace(policy=None), None, cfg, [], 24)
+
+
+def test_last_sb3_validation_uses_updated_weights(tmp_path, monkeypatch):
+    callback = ValidationCallback(EnvConfig(), tmp_path, eval_freq=8, n=1)
+    callback.model = SimpleNamespace(_total_timesteps=16)
+    evaluations = []
+    monkeypatch.setattr(callback, "_run", lambda: evaluations.append(callback.num_timesteps))
+    for step in range(1, 17):
+        callback.num_timesteps = step
+        callback.locals.update(n_steps=(step - 1) % 4, n_rollout_steps=4)
+        callback._on_step()
+    assert evaluations == [8]
+    callback._on_training_end()
+    assert evaluations == [8, 16]
+
+
+def test_series_recognizes_completed_legacy_run_and_checks_trainer():
+    folder = Path("runs/e7/rppo__pi__safe__att__asym__hp_epochs5__hp_lstm128/seed_0")
+    assert finished_run(folder, "sb3")
+    with pytest.raises(ValueError, match="another --exp"):
+        finished_run(folder, "native")
 
 
 def test_linear_learning_rate_reaches_zero_on_rollout_overshoot():

@@ -59,10 +59,12 @@ def rollout(policy, cfg: EnvConfig, conditions: list[EpisodeCondition], record_h
     hidden = [] if record_hidden else None
 
     for k in range(T):
+        if hook is not None:
+            # Decision k starts at k * dt. Its action and recorded memory
+            # must both reflect the intervention, including changes to observations.
+            hook(k, policy, core)
         actions = policy.act(core.observe(), episode_start)
         episode_start[:] = False
-        if hook is not None:
-            hook(k, policy, core)
         r, term, trunc = core.step(actions)
         alive[k] = alive_now
         reward[k] = r
